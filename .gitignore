@@ -12,3 +12,4 @@ mail/
 state/
 shots/
 *_raw.*
+_site/

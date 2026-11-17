@@ -19,6 +19,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import os
 import datetime as dt
 import html
 import re
@@ -30,7 +31,23 @@ from urllib.parse import urlparse
 SITE_TITLE_JA = "日次セキュリティ情報"
 SITE_TITLE_ZH = "每日 IT 安全摘要"
 SITE_TITLE = f"{SITE_TITLE_JA} / {SITE_TITLE_ZH}"
-BASE_URL = "https://secnews-list-gcu.pages.dev"
+# Single site-location setting. Override with the SECNEWS_BASE_URL env var
+# or --base-url. Everything else (internal links, assets, feed, canonical)
+# is derived from it, so the site works under a sub-path such as /secnews/.
+DEFAULT_BASE_URL = "https://newbdez33.github.io/secnews"
+BASE_URL = os.environ.get("SECNEWS_BASE_URL", DEFAULT_BASE_URL).rstrip("/")
+BASE_PATH = urlparse(BASE_URL).path.rstrip("/")  # e.g. "/secnews" or ""
+
+
+def set_base_url(url: str) -> None:
+    global BASE_URL, BASE_PATH
+    BASE_URL = url.rstrip("/")
+    BASE_PATH = urlparse(BASE_URL).path.rstrip("/")
+
+
+def site_href(path: str) -> str:
+    """Site-relative path ("/zh/") -> href under the base path ("/secnews/zh/")."""
+    return BASE_PATH + path
 FOOTER_LINE = "本ページは自動収集した情報をもとに作成しています。"
 DISCLAIMER_KEEP = (
     "各プロジェクトの状況に応じて、対応要否をご判断ください。",
@@ -42,7 +59,9 @@ WEEKDAY_ZH = "一二三四五六日"
 
 # Lines that belong in the internal Chinese brief, not on a public page.
 ZH_INTERNAL_PREFIXES = ("来源：", "来源:", "來源：", "來源:")
-# The Japanese mailing-list subscribe/unsubscribe footer.
+# The Japanese mailing-list subscribe/unsubscribe footer and the web-archive
+# link line, old (secnews-list-gcu.pages.dev) and new (newbdez33.github.io/secnews)
+# alike: any line containing "Web版（過去の配信" is dropped from the page.
 JA_OMIT_MARKERS = ("配信の登録・解除", "Web版（過去の配信")
 
 DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})$")
@@ -756,12 +775,12 @@ def build_view(rec: dict, lang: str) -> dict:
 def edition_href(date: dt.date, lang: str, latest: dt.date) -> str:
     """Pretty URL for an edition. The latest day maps to / or /zh/."""
     if date == latest:
-        return "/" if lang == "ja" else "/zh/"
-    return f"/{date.isoformat()}/{lang}.html"
+        return site_href("/" if lang == "ja" else "/zh/")
+    return site_href(f"/{date.isoformat()}/{lang}.html")
 
 
 def permalink_href(date: dt.date, lang: str) -> str:
-    return f"/{date.isoformat()}/{lang}.html"
+    return site_href(f"/{date.isoformat()}/{lang}.html")
 
 
 def date_label(rec: dict, lang: str) -> str:
@@ -915,7 +934,7 @@ def wrap_page(
             f'  <link rel="alternate" hreflang="ja" href="{attr(BASE_URL + "/" + day + "/ja.html")}">\n'
             f'  <link rel="alternate" hreflang="zh-CN" href="{attr(BASE_URL + "/" + day + "/zh.html")}">\n'
         )
-    home = "/" if lang == "ja" else "/zh/"
+    home = site_href("/" if lang == "ja" else "/zh/")
     title_cls = "lang-ja" if lang == "ja" else "lang-zh"
     tools = header_nav(
         date=date,
@@ -944,9 +963,9 @@ def wrap_page(
   <meta name="description" content="{attr(desc)}">
   <meta name="color-scheme" content="light dark">
   <link rel="canonical" href="{attr(canonical)}">
-{hreflang}  <script src="/theme.js"></script>
-  <link rel="stylesheet" href="/style.css">
-  <link rel="alternate" type="application/atom+xml" title="{attr(SITE_TITLE)}" href="/feed.xml">
+{hreflang}  <script src="{attr(site_href("/theme.js"))}"></script>
+  <link rel="stylesheet" href="{attr(site_href("/style.css"))}">
+  <link rel="alternate" type="application/atom+xml" title="{attr(SITE_TITLE)}" href="{attr(site_href("/feed.xml"))}">
 </head>
 <body>
   <header class="site-header">
@@ -1747,6 +1766,7 @@ def build(input_dir: Path, output_dir: Path) -> list[Path]:
     write_file(remember(output_dir / "style.css"), CSS)
     write_file(remember(output_dir / "theme.js"), THEME_JS)
     write_file(remember(output_dir / "_headers"), HEADERS)
+    write_file(remember(output_dir / ".nojekyll"), "")
     write_file(remember(output_dir / "feed.xml"), build_feed(editions))
 
     # editions are newest-first; prev = older, next = newer.
@@ -1780,14 +1800,18 @@ def main(argv: list[str] | None = None) -> int:
     here = Path(__file__).resolve().parent
     default_input = Path("/workspace/secnews/out")
     if not default_input.is_dir():
-        alt = here.parent / "secnews" / "out"
-        if alt.is_dir():
-            default_input = alt
+        for alt in (here.parent / "archive", here.parent / "secnews" / "out"):
+            if alt.is_dir():
+                default_input = alt
+                break
 
     parser = argparse.ArgumentParser(description="Build the secnews public archive site.")
     parser.add_argument("--input", type=Path, default=default_input, help="digest output directory")
     parser.add_argument("--output", type=Path, default=here / "dist", help="site output directory")
+    parser.add_argument("--base-url", default=None, help=f"public site URL (default {BASE_URL})")
     args = parser.parse_args(argv)
+    if args.base_url:
+        set_base_url(args.base_url)
 
     written = build(args.input.resolve(), args.output.resolve())
     print(f"built {len(written)} files into {args.output.resolve()}")
