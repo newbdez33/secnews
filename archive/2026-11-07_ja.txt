@@ -1,0 +1,59 @@
+【日次セキュリティ情報】2026/11/07（土）｜緊急 5件・重要 5件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026-11-06 09:05 JST 頃 ～ 2026-11-07 09:00 JST 頃
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. CISA KEV追加：SonicWall SonicOS SSLVPN の単要素認証／SAML強制MFA迂回（CVE-2026-19868）
+CISAが本脆弱性をKEVに追加しました（在野利用の証拠あり、対応期限 2026-11-20）。正規の別認証方式の資格情報を持つ利用者が、SAML／SAML強制MFAを迂回できる可能性があります。SonicWall SSLVPNを利用している場合は、ベンダー公告（SNWLID-2026-0014）に従い直ちに緩和またはアップデートを実施してください。
+https://www.cisa.gov/news-events/alerts/2026/11/06/cisa-adds-one-known-exploited-vulnerability-catalog
+https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2026-0014
+
+2. Microsoft Entra デバイス登録における認可回避（CVE-2026-109469、CVSS 10.0）
+ユーザーが制御可能なキーによる認可回避で、ネットワーク経由の権限昇格が可能とされています。Entra ID／デバイス登録を利用する環境では、修正適用状況を確認し、未適用の場合は優先対応してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-109469
+
+3. Craft CMS 未認証SQLインジェクション（CVE-2026-123488、CVSS 9.8）
+element search の attribute パラメータ処理不備により、未認証でSQLインジェクションが可能（4.x は 4.18.9 未満、5.x は 5.11.2 未満）。該当バージョンは修正版へ更新してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-123488
+
+4. AWS Babelfish for Aurora PostgreSQL：TDS層の問題（CVE-2026-119923／CVE-2026-119924、119923 は CVSS 9.8）
+不正なTDSプリログインパケット等により、データベースプロセス権限での影響やメモリ安全性問題が報告されています。Babelfish／TDSを有効にした Aurora PostgreSQL は AWS-2026-166 に従いエンジンを更新してください。
+https://aws.amazon.com/security/security-bulletins/rss/2026-166-aws/
+
+5. QNAP：Plex2Shell 攻撃連鎖による NAS 侵害が進行中
+QNAPは App Center の Plex Media Server を最新版へ更新するよう呼びかけています。該当構成では直ちに更新または一時停止し、不審なプロセス／外部通信を確認してください。
+https://www.bleepingcomputer.com/news/security/qnap-says-hackers-breaching-nas-devices-in-plex2shell-attacks/
+
+■ 🟠 重要（High）
+
+6. OpenSSH「SSHole」（CVE-2026-123158、CVSS 8.1）について、公開数時間以内にスキャン／悪用試行が観測され、ハニーポット上で root 取得例も報告されています。musl＋PAM無効構成（一部 Alpine 等）は 10.6p2 以降への更新と、パスワード未設定アカウントの露出有無を再確認してください。
+https://thehackernews.com/2026/11/hackers-exploited-openssh-sshole-flaw.html
+
+7. Windows ペイントのリモートコード実行（CVE-2026-83844、CVSS 8.1）の修正は Microsoft Store 経由（ビルド 11.2609.401.0 以降）で提供され、Windows Update では配信されません。Store からの更新適用を確認してください。
+https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-83844
+
+8. Docker Sandboxes にローカル利用者操作を要するリモートコード実行（CVE-2026-121614、CVSS 7.8 / ZDI-26-894）が公開されています。該当機能を使う端末はベンダー修正を適用してください。
+http://www.zerodayinitiative.com/advisories/ZDI-26-894/
+
+9. D-Link は DGS-3130 シリーズスイッチの複数未修正ゼロデイについて緩和策を公表しています。管理インターフェースのインターネット露出を避け、案内された緩和を実施してください。
+https://www.bleepingcomputer.com/news/security/d-link-warns-of-multiple-zero-days-in-dgs-3130-series-switches/
+
+10. GitHub 上の偽セキュリティツールがバックドア／情報窃取マルウェアを仕込む事例が報告されています。検証用リポジトリの取得・実行前に出所と更新履歴を確認してください。
+https://www.bleepingcomputer.com/news/security/fake-security-tools-on-github-push-backdoors-and-infostealers/
+
+■ ⚪ 参考情報
+
+11. 国内の相次ぐ不正アクセス・情報漏えいを受け、日本政府が緊急のサイバーセキュリティ対策パッケージを発表しました。
+https://www.securityweek.com/japan-announces-emergency-cybersecurity-package-following-a-wave-of-attacks/
+
+12. NTTドコモは「ドコモオンラインショップ」および「My docomo」への不正アクセスにより顧客の個人情報が流出したと発表（メンテナンス中）。また、あいおいニッセイ同和損保は契約者専用ページへの不正アクセスで約44万4,000件の個人情報漏えいを確認したと公表しています。
+https://www.security-next.com/192453
+https://rocket-boys.co.jp/security-measures-lab/aioi_nissay_dowa_444000_customer_data_leak_20261106/
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。

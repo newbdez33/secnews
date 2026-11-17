@@ -1,0 +1,58 @@
+【日次セキュリティ情報】2026/11/17（火）｜緊急 4件・重要 4件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/16 09:15 ～ 2026/11/17 09:10（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. LiteLLM/Starlette の脆弱性チェーン（CVE-2026-42271、CVE-2026-48710）を狙うスキャンを観測、AI エージェントによる API キー窃取キャンペーンも
+認証不要の RCE につながる脆弱性チェーンへの攻撃リクエストが観測され、Amazon は公開された LiteLLM、One API、Dify などから AI プロバイダーのキーを盗む攻撃を報告しています。自社運用の LLM ゲートウェイは最新版へ更新し、インターネットからの直接公開を停止してください。
+https://thehackernews.com/2026/11/amazon-uncovers-ai-agent-campaign.html
+
+2. Apache HTTP Server mod_http2 の RCE 脆弱性（CVE-2026-119618、CVSS 9.8）の詳細と DoS PoC が公開
+2.4.55～2.4.70 で HTTP/2 を有効にしている環境が対象です。2.4.71 以降へ更新するか、暫定策として「Protocols http/1.1」で HTTP/2 を無効化してください。
+https://blog.nsfocus.net/apache-http-server%e8%bf%9c%e7%a8%8b%e4%bb%a3%e7%a0%81%e6%89%a7%e8%a1%8c%e6%bc%8f%e6%b4%9e%ef%bc%88cve-2026-119618%ef%bc%89%e9%80%9a%e5%91%8a-2/
+
+3. Dassault 3DEXPERIENCE Station Launcher にデシリアライズの脆弱性（CVE-2026-93664、CVSS 10.0）ほか
+同製品の OS コマンドインジェクション（CVSS 9.9）2件、Cloud Commander 19.21.4 未満の認証回避（CVE-2026-130072、CVSS 9.1）も公表されています。該当製品を利用している場合は修正版を適用してください。
+https://github.com/advisories/GHSA-26cr-jv3x-43fw
+
+4. Copeland XWEB EVO 冷凍・冷蔵コントローラーに14件の脆弱性、うち2件で攻撃を確認
+公表後まもなく攻撃者による探索が確認されています。同日には Danfoss AK-SM800A の未修正の脆弱性6件も公表されており、OT 機器はインターネットに公開しないでください。
+https://www.securityweek.com/hackers-probe-newly-disclosed-flaws-in-copeland-refrigeration-controllers/
+
+■ 🟠 重要（High）
+
+5. Telegram の新機能 Widgets で RCE のデモが公開され、Kaspersky はマルウェア WebRAT 配布への悪用を指摘しています。
+https://www.securityweek.com/telegram-widgets-hit-by-rce-demos-malware-warning-days-after-launch/
+
+6. Debian の LightDM / GTK greeter にログインユーザーから root への権限昇格の脆弱性（DSA-6633-1）、Ubuntu などにも影響します。
+https://seclists.org/oss-sec/2026/q4/726
+
+7. AWS が Deep Java Library（CVE-2026-129266）、AWS Pricing MCP Server（CVE-2026-126816）、Timestream for InfluxDB MCP Server（CVE-2026-126681）のセキュリティ情報を公開しました。
+https://aws.amazon.com/security/security-bulletins/rss/2026-183-aws/
+
+8. macOS APFS の Unicode 正規化の差異により、複数アプリケーションのファイル書き込み制限が回避される問題（CERT/CC VU#604762）が公表されました。
+https://kb.cert.org/vuls/id/604762
+
+■ ⚪ 参考情報
+
+9. Microsoft は11月の更新プログラムで発生した Windows のライセンス認証の不具合を修正する定例外更新を公開しました。
+https://www.bleepingcomputer.com/news/microsoft/microsoft-new-windows-emergency-updates-fix-activation-licensing-failures/
+
+10. Google GTIG は、攻撃者が AI エージェントでパッチ差分から攻撃コードを自動生成・実行する事例を初めて確認したと報告しました。
+https://www.bleepingcomputer.com/news/security/google-warns-that-fully-automated-ai-attacks-are-coming-soon/
+
+11. 理化学研究所は、スーパーコンピュータ「富岳」に関するシステムが不正アクセスを受けたことを明らかにしました。
+https://www.itmedia.co.jp/news/article/2611/16/2000003224/
+
+12. プレイド「KARTE」への不正アクセスの影響が拡大し、四国電力（約60万件）、阪急阪神ホテルズ（最大33万件）が情報漏えいを公表しました。
+https://rocket-boys.co.jp/security-measures-lab/shikoku-electric-yonden-concierge-karte-data-leak-20261116/
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://secnews-list-gcu.pages.dev/

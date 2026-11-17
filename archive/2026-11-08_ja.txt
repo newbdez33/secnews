@@ -1,0 +1,57 @@
+【日次セキュリティ情報】2026/11/08（日）｜緊急 3件・重要 3件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026-11-07 09:07 JST 頃 ～ 2026-11-08 09:00 JST 頃
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. IBM API Connect における多数の Critical（未認証の認証回避・ハードコード認証情報・未認証 RCE 等）
+IBM API Connect 12.1.0.0～12.1.1.2 を対象に、署名検証不備による未認証の認証回避（CVE-2026-17301、CVSS 9.8）、ハードコード認証情報による管理者権限取得（CVE-2026-17360、CVSS 9.8）、未認証の OS コマンドインジェクション（CVE-2026-17408、CVSS 9.8）、未認証のパストラバーサルによるリモートコード実行（CVE-2026-17340、CVSS 9.8）、未認証でのテナント作成・変更・削除（CVE-2026-17362、CVSS 9.8）などが公開されています。CVE 記載では 10.0.8.0～10.0.8.12 も影響範囲です。緩和策は示されておらず、V12 は 12.1.1.3 へ更新してください（10.0.8 系は IBM 公告／Fix Central の修正版を確認してください）。
+https://www.ibm.com/support/pages/security-bulletin-multiple-vulnerabilities-ibm-api-connect-39
+
+2. IBM Aspera Faspex の認可回避（CVE-2026-123218、CVSS 9.8）
+5.0.0～5.0.19 において、認可済み利用者が特定のメッセージを組み立てることで認可を迂回し、完全な管理者権限を取得できる可能性があります。5.0.19 PL1 へ更新し、faspex-core コンテナイメージが 5.0.19（1ce4b13、Fix Pack 1）であることを確認してください。緩和策は示されていません。
+https://www.ibm.com/support/pages/security-bulletin-ibm-aspera-faspex-has-addressed-vulnerability-could-allow-authorization-bypass
+
+3. Keycloak のクライアント管理不備によるサーバ側コード実行（CVE-2026-120984、CVSS 9.1）
+クライアント管理権限を持つ認証済み攻撃者が、認可サービスを有効にしたクライアントの作成／インポート時にセッション属性が残る不備を突いて、不正な JavaScript ポリシーをアップロードし、認可リクエスト処理時にサーバ上で任意コードを実行できる可能性があります。Red Hat は Keycloak 26.6.9（RHSA-2026:96040／96039）を公開しています。該当製品は更新してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-120984
+https://access.redhat.com/errata/RHSA-2026:96040
+
+■ 🟠 重要（High）
+
+4. Claude Code の「Don't Ask Again」が承認したコマンドを .claude/settings.local.json にそのまま保存し、公開 GitHub 上の 1,122 件の複製からパスワードや API キーが読み取れる事例が報告されています（Apiiro 調査、約 1,379 件の機密）。当該ファイルや git 履歴に含まれた認証情報は先にローテーションし、プロジェクトの .gitignore へ追加してください。
+https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html
+
+5. 既報の Linux カーネル IPv4 TCP の脆弱性（CVE-2026-98432、CVSS 9.8）について、各ベンダーの修正状況が整理されています。RHEL／Alma／Rocky／Amazon Linux 等は修正カーネルが提供済み、Ubuntu 24.04／22.04 LTS は対応中、Check Point は 11 月 11 日頃のジャンボホットフィックス、Synology DSM は 12 月更新予定とされています。自組織のカーネルおよびネットワーク機器の適用状況を再確認してください。
+https://www.ithome.com.tw/news/180298
+
+6. Apache Allura に OAuth1 のリバインディング脆弱性（CVE-2026-118196、Critical）が公開されています。1.22.0 までが影響を受け、修正版は 1.22.1 です。該当する場合は更新してください。
+https://seclists.org/oss-sec/2026/q4/565
+
+■ ⚪ 参考情報
+
+7. フランスの協同組合銀行 Crédit Mutuel Arkéa がサービス事業者経由で侵入され、最大約 1 億 3,300 万ドル規模の不正送金があったと報じられています。同行は顧客資産への影響はないとし、攻撃者は同行自身の口座を使って他行へ送金したと説明しています。
+https://www.bleepingcomputer.com/news/security/hackers-pull-off-133-million-french-bank-heist-via-service-provider/
+
+8. マイクロソフトは、金銭目的の脅威アクター Storm-3358 がエージェント型攻撃フレームワーク ARTEX を使い、金融セクターへの攻撃を拡大していると報告しています。公開面のスキャン、匿名アップロードや SSRF の悪用、WISP／vshell／AdaptixC2 等の RAT 投入が観察されています。
+https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/
+
+9. 国内では、アソビューおよびメール配信委託先アララへの不正アクセスに起因する漏えい発表が続いています。埼玉県営プール・動物園、沖縄美ら海水族館・首里城公園、京都市京セラ美術館・二条城のチケット利用者のほか、姫路市のオンライン申請とマイナンバーカード交付予約、不動産会社ウィルのメールアドレス約 10 万 2,369 件、SBC 信越放送公式アプリ最大約 1 万 4,000 件、パ・リーグ 5 球団のメールアドレス 13,711 件などが公表されています。また、日本学術振興会は科研費の電子申請システムへの不正アクセスを発表し、10 月 29 日から停止、個人情報の漏えいは確認されていないとしています。
+https://rocket-boys.co.jp/security-measures-lab/saitama_prefecture_pools_zoo_asoview_20261106/
+https://rocket-boys.co.jp/security-measures-lab/himeji_city_arara_online_reservation_disaster_email_20261107/
+
+10. WordPress プラグイン複数件が Critical として公開されています（LatePoint の認証回避 CVE-2026-118066、WooCommerce 向け Registration Form の権限昇格 CVE-2026-119075、Naimur Email OTP CVE-2026-104014、Checkout Field Editor Pro CVE-2026-122041、payever の任意ファイルアップロード CVE-2026-93754 等）。該当プラグインは更新または停止を検討してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-118066
+
+11. Tenda AC19（CVE-2026-123966、CVSS 10.0）および TOTOLINK CA300-PoE ファームウェア 6.2c.884（CVE-2026-123957 ほか、CVSS 最大 9.9）に複数のバッファオーバーフローが公開されています。管理インターフェースをインターネットに公開せず、ベンダーのファームウェア更新を確認してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-123966
+https://nvd.nist.gov/vuln/detail/CVE-2026-123957
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+配信の登録・解除：Outlook の 設定 → 全般 → 配布グループ で「security-news」を参加／脱退

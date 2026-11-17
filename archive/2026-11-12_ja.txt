@@ -1,0 +1,66 @@
+【日次セキュリティ情報】2026/11/12（木）｜緊急 4件・重要 4件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/11 09:20 〜 2026/11/12 09:15（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. ConnectWise ScreenConnect を悪用した MSP への攻撃が進行中
+侵害された ScreenConnect 環境を経由して顧客端末に不正なリモートアクセスツールが展開され、数十組織に影響が出ています。ScreenConnect を利用中の場合は、見覚えのないリモートアクセスクライアントやセッションがないか確認してください。
+https://www.bleepingcomputer.com/news/security/active-screenconnect-attacks-breach-msps-impact-dozens-of-organizations/
+
+2. FortiOS に重要度「クリティカル」の脆弱性 3件（CVE-2026-126259 ほか）
+FGSP と設定同期、またはオートスケール構成では、細工した HA パケットにより認証なしで最上位の管理者権限でコマンドを実行される恐れがあります。BGP（CVE-2026-126254）や OSPF（CVE-2026-126253）関連の脆弱性も含まれるため、Fortinet のアドバイザリに従い修正版へ更新してください。
+https://www.security-next.com/192635
+
+3. Apache HTTP Server 2.4.71 公開、mod_http2 のヒープ破損によるリモートコード実行（CVE-2026-119618）
+2.4.55〜2.4.70 が影響を受け、Apache は深刻度を Critical としています。mod_md の NULL ポインタ参照（Important）も修正されているため、HTTP/2 を有効にしているサーバーは速やかに 2.4.71 へ更新してください。
+https://httpd.apache.org/security/vulnerabilities_24.html
+
+4. Red Hat Quay に深刻な脆弱性 2件（CVE-2026-123710：CVSS 9.8、CVE-2026-110697：CVSS 9.9）
+認証なしで取得した匿名トークンによるサービスキーローテーション API の悪用と、ロボットアカウント一覧での SQL インジェクションです。Quay を自社運用している場合は修正版へ更新してください。
+https://github.com/advisories/GHSA-jw94-v4wp-236w
+
+■ 🟠 重要（High）
+
+5. Node.js 22 / 24 / 26 系のセキュリティリリース（CVE-2026-123863〜123866 ほか）
+HTTPS で他の接続のメモリ（TLS 秘密鍵を含む可能性）が漏えいする問題や、HTTP/2 サーバーの停止・リソース枯渇などが修正されたため、22.23.5 / 24.22.3 / 26.13.1 へ更新してください。
+https://nodejs.org/en/blog/vulnerability/november-2026-security-releases
+
+6. Citrix XenServer 8.4 / 9 の脆弱性（CVE-2026-102705 ほか）
+認証なしで Pool Secret を推測され、仮想化ホストを侵害される恐れがあるため、11月3日・10日公開の更新を適用してください。
+https://rocket-boys.co.jp/security-measures-lab/citrix-xenserver-november-2026-pool-secret-cve-2026-102705/
+
+7. Movable Type のダイナミックパブリッシング機能におけるコードインジェクションの脆弱性
+Movable Type を利用している場合は、開発元の情報に従いアップデートしてください。
+https://jvn.jp/jp/JVN11786640/
+
+8. AI ペネトレーションテスト基盤「AntiFox」を悪用した AWS 認証情報の窃取
+攻撃者が自前の AntiFox で Web サービスや AWS 環境を狙い、本番環境のシークレットを取得しているため、公開されている IAM キーや不審な API 呼び出しを確認してください。
+https://www.bleepingcomputer.com/news/security/hackers-use-antifox-ai-agents-in-aws-credential-theft-attacks/
+
+■ ⚪ 参考情報
+
+9. Microsoft、侵害された Linux サーバー上で GSocket が隠密な C2 に悪用されていると報告
+元の脆弱性の修正後も暗号化された遠隔操作が維持されるため、記事中の検出・駆除方法を参考にしてください。
+https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/
+
+10. Notion、委託先 Fireworks AI の侵害により一部ワークスペースの Notion AI チャット記録が流出した可能性を公表
+Notion AI を利用している場合は、Notion からの通知を確認してください。
+https://piyolog.hatenadiary.jp/entry/2026/11/11/125745
+
+11. eMudhra、秘密鍵の取り扱い不備を受けて中間 CA 証明書 8件を追加失効
+該当 CA から発行された証明書を利用している場合は、再発行が必要です。
+https://www.bleepingcomputer.com/news/security/emudhra-revokes-8-more-ca-certificates-after-private-key-mishap/
+
+12. 日本郵便「郵便局［ぽすくま］」LINE サービスが停止、委託先の電通デジタル「TONARIWA」への不正アクセスが原因
+ほかにヤクルト本社、ラクスル、エムオーテックスでの不正アクセスや、明治学院大学サイトの改ざんも公表されています。
+https://rocket-boys.co.jp/security-measures-lab/japan_post_posukuma_line_tonariwa_unauthorized_access_2026/
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+配信の登録・解除：Outlook の 設定 → 全般 → 配布グループ で「security-news」を参加／脱退

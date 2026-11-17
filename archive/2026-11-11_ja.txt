@@ -1,0 +1,63 @@
+【日次セキュリティ情報】2026/11/11（水）｜緊急 7件・重要 3件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026-11-10 09:10 JST 頃 ～ 2026-11-11 09:20 JST 頃
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. Microsoft 11 月の月例セキュリティ更新、Outlook のゼロデイ（CVE-2026-124194）を含む
+1,000 件を超える脆弱性が修正されました。このうち Outlook の脆弱性（CVE-2026-124194）はすでに悪用が確認されており、CISA KEV にも追加されています。ほかにも Windows DNS（CVE-2026-88218）、DHCP Server（CVE-2026-88243）、LDAP（CVE-2026-119958）、Kerberos の認証回避（CVE-2026-85844）、SQL Server（CVE-2026-116945）に、認証なしで悪用できる CVSS 9.8 の脆弱性があります。ドメインコントローラーや SQL Server を優先し、更新プログラム（Windows 11 は KB5132061／KB5131087）を早急に適用してください。
+https://www.bleepingcomputer.com/news/microsoft/microsoft-november-2026-patch-tuesday-fixes-1-235-flaws-outlook-zero-day/
+
+2. CISA KEV に 6 件追加：Barracuda ESG、Cisco BroadWorks など
+悪用の証拠に基づき、Outlook（CVE-2026-124194）、Chromium（CVE-2026-125350）、Cisco BroadWorks の XXE（CVE-2026-20320）、Openwave Webtop（CVE-2026-111793）、Barracuda Email Security Gateway の OS コマンドインジェクション（CVE-2026-111560）などが追加されました。Barracuda ESG では root 権限の取得に悪用されています。該当製品を利用している場合は、修正版をただちに適用してください。
+https://www.cisa.gov/news-events/alerts/2026/11/10/cisa-adds-six-known-exploited-vulnerabilities-catalog
+
+3. Xen Orchestra の認証回避の脆弱性、悪用を確認
+仮想化管理ツール Xen Orchestra の重大な認証回避の脆弱性が悪用されており、管理者権限の取得や XCP-ng ホストの乗っ取りにつながるおそれがあります。最新版へ更新し、管理画面をインターネットに公開しないでください。
+https://www.bleepingcomputer.com/news/security/critical-xen-orchestra-auth-bypass-flaw-exploited-to-hijack-vm-servers/
+
+4. SAP 11 月の定例更新、CVSS 10.0 の脆弱性 4 件（ICM2SHELL、ProxyGate）
+SAP NetWeaver AS ABAP、Web Dispatcher、SAP Gateway に、認証なしで悪用できる最大深刻度の脆弱性があり、うち 2 件はリモートコード実行につながります。SAP Security Patch Day の修正を早急に適用してください。
+https://www.bleepingcomputer.com/news/security/sap-patches-four-maximum-severity-security-vulnerabilities/
+
+5. React Server Components に認証不要のリモートコード実行の脆弱性（CVE-2026-126187）
+react-server-dom-webpack／parcel／turbopack の 19.0.0～19.3.0 が影響を受け、Next.js など RSC を使うフレームワークも対象になります。19.0.9、19.1.10、19.2.9、19.3.1 以降へ更新してください。サーバーを使わないクライアント専用の React は影響を受けません。
+https://github.com/advisories/GHSA-xqc2-xf4c-x3h3
+
+6. Adobe 11 月の定例更新、9 製品で 110 件を修正
+Adobe Connect に CVSS 10.0 の脆弱性が 5 件（SSRF、パストラバーサル等）、Adobe Experience Manager（AEM）に CVSS 9.9 のコード実行の脆弱性が複数あります。該当製品を利用している場合は修正版を適用してください。
+https://www.securityweek.com/adobe-patches-110-vulnerabilities-across-9-products/
+
+7. MongoDB Server（CVE-2026-118383）と Mongoose（CVE-2026-125120）の脆弱性
+MongoDB Server のレプリケーション機能に解放済みメモリ使用（CVSS 9.0）の脆弱性があります。また、Node.js 向けライブラリ Mongoose では countDocuments に sanitizeFilter が適用されず、インジェクションにつながる問題（CVSS 9.8）が修正されました。両方とも修正版へ更新してください。
+https://github.com/advisories/GHSA-fjxh-6vgh-cx2c
+https://github.com/advisories/GHSA-pcrw-h46h-c93h
+
+■ 🟠 重要（High）
+
+8. Git に 6 件の脆弱性。悪意あるリポジトリを再帰的にクローンするとコードが実行される問題（CVE-2026-111760）を含むため、Git 2.56.1 または各系列の修正版へ更新してください（GitHub Enterprise Server も更新が必要です）。
+https://github.blog/open-source/git/git-security-vulnerabilities-announced-7/
+
+9. Go 1.27.4／1.26.11 で 12 件の脆弱性が修正されました。net/http の HTTP/1 サーバーを停止させられる問題（CVE-2026-97054）や、cgo を使ったビルド時にコードを実行される問題（CVE-2026-97033 ほか）を含むため、ビルド環境と CI を更新してください。
+https://seclists.org/oss-sec/2026/q4/646
+
+10. iOS 26.7.1／27.0.1／27.2 で、アプリが他のアプリのファイルを読み取れるサンドボックス回避の PoC が公開されました。修正はまだ確認されておらず、暗号資産ウォレットの秘密鍵が漏えいするおそれがあるため、信頼できないアプリのインストールは控えてください。
+https://www.bleepingcomputer.com/news/security/binance-warns-of-ios-flaw-that-could-leak-crypto-wallet-secrets/
+
+■ ⚪ 参考情報
+
+11. クラウドホスティングの Railway が不正アクセスを受け、顧客の認証シークレットが盗まれて約 74 万ドル分の AI 利用料金が不正に発生しました。Railway に API キー等を登録している場合は、ローテーションを推奨します。
+https://www.bleepingcomputer.com/news/apple/railway-breach-leads-to-740-000-in-fraudulent-ai-charges/
+
+12. 国内では情報漏えいの公表が続いています。ニトリでは約 3,762 万件の顧客情報が流出した可能性があります。このほか、NTT データが受託する住友生命「Vitality」の利用者約 8 万人、JAL の委託先 Amadeus の予約情報の一部閲覧、九州電力送配電の電力量情報、ティンパンアレイの延べ約 120 万件、電子チケット「teket」の全サービス停止、アララへの不正アクセスによるバルテス「Qbook」の 47,502 件などが公表されています。関連するフィッシングメールにご注意ください。
+https://www.security-next.com/192572
+https://scan.netsecurity.ne.jp/article/2026/11/11/56736.html
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+配信の登録・解除：Outlook の 設定 → 全般 → 配布グループ で「security-news」を参加／脱退

@@ -1,0 +1,66 @@
+【日次セキュリティ情報】2026/11/14（土）｜緊急 6件・重要 3件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/13 09:20 〜 2026/11/14 09:18（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. Check Point セキュリティゲートウェイで PHP2Shell と権限昇格のゼロデイ（CVE-2026-123039）が実際に悪用
+10月30日以降、PHP2Shell（CVE-2026-109618／109619）で侵入された後、Gaia OS の DynamicCLI の脆弱性で root 権限を取られ、ESXi ホストでのデータ破壊も確認されています。CISA KEV にも登録済み（対応期限 11/16）のため、R81〜R82.20 を利用している場合は緊急ホットフィックスを適用し、Web シェルなどの痕跡を確認してください。
+https://www.securityweek.com/php2shell-exploited-in-destructive-check-point-gateway-attacks/
+
+2. UnrealIRCd の CVE-2026-114713 が CISA KEV に登録（実際の悪用を確認）
+複数サーバーを接続したネットワークでは、一般ユーザーがサーバー間コマンドを注入できる恐れがあります。UnrealIRCd を運用している場合は、6.2.7.1 以降へ更新してください。
+https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+
+3. FortiMail に Critical の脆弱性 8件（うち CVE-2026-126147 など 3件が CVSS 9.8）
+認証なしでコードやコマンドを実行される恐れがあるパストラバーサル、コマンドインジェクション、SQL インジェクションが含まれます。多くは10月の更新で修正済みのため、最新版が適用されているか確認してください。
+https://fortiguard.fortinet.com/psirt/FG-IR-26-199
+
+4. Linux カーネル KSMBD の SMB Direct におけるリモートコード実行（ZDI-26-998：CVSS 9.0）
+SMB Direct を有効にした ksmbd が影響を受けます。該当環境ではカーネルを更新し、不要であれば ksmbd や SMB Direct を無効にしてください。
+http://www.zerodayinitiative.com/advisories/ZDI-26-998/
+
+5. SmarterMail の認証回避（CVE-2026-126969：CVSS 9.1）
+認証なしでログインを回避される恐れがあるため、SmarterMail を利用している場合は最新ビルドへ更新してください。
+http://www.zerodayinitiative.com/advisories/ZDI-26-997/
+
+6. FrankenPHP の公式 Docker イメージにベースイメージのセキュリティ修正が反映されていなかった問題（CVE-2026-128027：CVSS 9.8）
+1.1.11 より前のイメージには、Alpine・PHP・Go の既知の脆弱性が残っている恐れがあります。FrankenPHP のイメージを利用している場合は、最新版を取得し直してコンテナを再作成してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-128027
+
+■ 🟠 重要（High）
+
+7. Windows リモートデスクトップ接続クライアントのリモートコード実行（CVE-2026-119824）
+悪意ある RDP サーバーへ接続するとコードを実行される恐れがあるため、最新の更新を適用し、信頼できないサーバーには接続しないでください。
+http://www.zerodayinitiative.com/advisories/ZDI-26-967/
+
+8. Dropbear SSH で unix ソケット転送に permitopen／permitlisten の制限が適用されない問題
+制限付きの鍵でも docker.sock などに到達できる恐れがあり、修正は未提供のため、該当する鍵には no-port-forwarding を設定してください。
+https://seclists.org/oss-sec/2026/q4/690
+
+9. サイバーセキュリティクラウド（CSC）の GitHub 環境に不正アクセス
+流出した従業員の認証情報が悪用され、一部の顧客の組織名・氏名・メールアドレスなどが流出した可能性があると公表されています。
+https://www.security-next.com/192847
+
+■ ⚪ 参考情報
+
+10. Microsoft、11月の Windows 更新によるライセンス認証の失敗（0x80041008）と印刷不具合を確認
+該当する事象が発生した場合は、Microsoft のリリース正常性情報で回避策を確認してください。
+https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-windows-activation-failures-after-november-updates/
+
+11. FBI、攻撃自動化ツール「Artex」に関する Flash アラートを発出
+侵入から特権アクセスの取得まで 3時間未満の事例もあると報告されています。
+https://therecord.media/artex-ai-tool-fbi-flash-alert
+
+12. 国内で大規模な情報漏えいの公表が続く（大阪市 100万件超、マネックス証券 最大113万件、読売巨人軍「CLUB GIANTS」80万7,030件）
+大阪市はアララへの不正アクセスによりメールアドレスが流出したとしており、市を装った不審なメールへの注意を呼びかけています。
+https://therecord.media/city-of-osaka-japan-email-data-breach
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://secnews-list-gcu.pages.dev/

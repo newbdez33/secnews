@@ -1,0 +1,66 @@
+【日次セキュリティ情報】2026/11/15（日）｜緊急 4件・重要 4件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/14 09:18 〜 2026/11/15 09:10（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. Dokploy の OS コマンドインジェクション（CVE-2026-129433：CVSS 9.9）
+Docker／Compose のセルフホスト型デプロイ基盤 Dokploy 0.31.1 より前のバージョンで、組織メンバーが serviceName パラメータ経由でホスト上の任意コマンドを実行できる恐れがあります。利用している場合は 0.31.1 以降へ更新してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-129433
+
+2. Apache Shiro の DefaultLdapRealm で任意のパスワードによるログインが可能（CVE-2026-129349：CVSS 4.0 9.1）
+認証キャッシュ（authenticationCachingEnabled=true、既定値ではない）を有効にしている場合、一度ログインに成功したユーザーには以後どのパスワードでもログインできてしまいます。Shiro 3.0.1 以降へ更新するか、LDAP Realm の認証キャッシュを無効にしてください。
+https://seclists.org/oss-sec/2026/q4/705
+
+3. WordPress プラグインに CVSS 9.8 の脆弱性が複数（AutomatorWP Pro、Fluent Forms 用 Cloud Storage Manager、Shipo）
+認可回避（CVE-2026-126173）、任意ファイル書き込み（CVE-2026-120522）、認証回避（CVE-2026-19907）により、サイトを乗っ取られる恐れがあります。該当プラグインを利用している場合は、修正版への更新または無効化を行ってください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-126173
+
+4. TRENDnet・Edimax・Tenda 製ルーターに CVSS 9 以上の脆弱性
+TRENDnet TEW-657BRM（CVE-2026-129351：CVSS 10.0 ほか）、Edimax BR6478ACV2（CVE-2026-129250：CVSS 9.9）、Tenda AC18（CVE-2026-129258：CVSS 9.1）が対象です。サポートが終了した機種は、置き換えを検討してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-129351
+
+■ 🟠 重要（High）
+
+5. Tailscale Kubernetes Operator の API サーバープロキシで、任意の tailnet ノードになりすまし可能（TS-2026-018）
+専用 ProxyGroup（kube-apiserver）または k8s-proxy で運用している構成が対象のため、Tailscale 1.104.7 以降へ更新し、Kubernetes の監査ログを確認してください。
+https://tailscale.com/security-bulletins
+
+6. Cursor、拡張機能マーケットプレイスで不正な Claude Code 拡張が配布された件の調査結果を公表
+10月29日に配布された Anthropic.claude-code 2.1.312／2.1.313 をインストールした端末は、アンインストールだけでは不十分なため、公式の手順に沿って SSH 鍵や永続化スクリプトの削除と認証情報の変更を行ってください。
+https://cursor.com/blog/security-incident-update
+
+7. Control Web Panel（CWP）の認証回避と Host ヘッダーインジェクション（CVE-2026-124021／CVE-2026-124020）
+webpanel_version 1.30.6 より前が対象のため、管理画面をインターネットに公開している場合は更新してください。
+https://github.com/advisories/GHSA-mgcx-hxxw-4q57
+
+8. Debian の network-manager-iodine でローカル権限昇格（DSA-6629-1）
+iodine VPN プラグインを導入している Debian 環境では、セキュリティ更新を適用してください。
+https://lists.debian.org/debian-security-announce/2026/msg00549.html
+
+■ ⚪ 参考情報
+
+9. 京成電鉄「スカイライナー」座席予約システムに不正アクセス、最大約337万件の個人情報が流出の恐れ
+暗号化されたパスワードも対象に含まれるため、同じパスワードを他のサービスで使っている場合は変更が推奨されます。
+https://rocket-boys.co.jp/security-measures-lab/keisei-skyliner-reservation-unauthorized-access-3370000/
+
+10. ヤマダデンキのリフォーム管理システムに不正アクセス、最大350万件の個人情報が流出の恐れ
+氏名、住所、電話番号、リフォーム実施履歴、見積データなどが対象とされています。
+https://rocket-boys.co.jp/security-measures-lab/yamada-denki-reform-unauthorized-access-2026/
+
+11. アクサ損害保険「MyAXA」約59万7,000件、アップルワールド「Rikisha Easy REZ!」最大58万2,024件の情報漏えいの恐れ
+このほか、京阪HDグループの公式LINEアカウント利用者情報やスノーピークの不正アクセスなど、国内での公表が続いています。
+https://rocket-boys.co.jp/security-measures-lab/axa-myaxa-597000-data-exposure-second-report-20261113/
+
+12. Vim 9.2.1346 より前で、PowerShell のキーワード検索からコマンドが実行される問題（深刻度：低）
+細工された PowerShell スクリプトの行を選択して K を押すとコマンドが実行される恐れがあるため、Vim を更新してください。
+https://seclists.org/oss-sec/2026/q4/708
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://secnews-list-gcu.pages.dev/

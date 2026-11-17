@@ -1,0 +1,66 @@
+【日次セキュリティ情報】2026/11/16（月）｜緊急 4件・重要 4件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/15 09:10 〜 2026/11/16 09:15（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. Red Hat Satellite のテンプレート処理にサンドボックス回避の脆弱性（CVE-2026-107360：CVSS 9.6）
+rubygem-safemode の不備により、テンプレートを編集できる認証済みユーザーが、管理対象ホストの削除や許可されていない情報の閲覧を行える恐れがあります。Satellite／Foreman を利用している場合は、修正版へ更新してください。
+https://access.redhat.com/security/cve/CVE-2026-107360
+
+2. Cyrus SASL の SRP 認証で認証回避（CVE-2026-129483：CVSS 9.1）
+Cyrus SASL 2.1.28 以前では、未認証の攻撃者が細工した値を送ることで、パスワードなしで任意の既存ユーザーとして認証できる恐れがあります。SRP 機構を有効にしているメール／LDAP 等のサービスでは、ディストリビューションの更新を適用するか、SRP 機構を無効にしてください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-129483
+
+3. WordPress プラグインに CVSS 9.8 の脆弱性が複数（Advanced Form Integration、Document Library Pro ほか）
+権限設定の不備（CVE-2026-125769）、安全でないデシリアライズ（CVE-2026-122662）、PHP リモートファイルインクルード（CVE-2026-125795）により、サイトを乗っ取られる恐れがあります。該当プラグインを利用している場合は、修正版への更新または無効化を行ってください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-125769
+
+4. D-Link 製の旧型ルーター（DIR-600L、DSL-6740C）に CVSS 10.0 の脆弱性
+CVE-2026-129353／CVE-2026-129354（DIR-600L）、CVE-2026-129444（DSL-6740C）が公表されました。いずれもサポート終了機種で修正版の提供は見込めないため、利用している場合は機器の置き換えを行ってください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-129353
+
+■ 🟠 重要（High）
+
+5. Linux カーネル TCP の認証前リモートメモリ破損「NoisyTCP」（CVE-2026-99288：CVSS 7.5）
+既定構成の nginx、Apache、SSH などで外部から悪用でき、ホスト全体が停止する恐れがあり、ほぼすべての Linux ディストリビューションが対象のため、各ディストリビューションのカーネル更新を確認・適用してください。
+https://seclists.org/oss-sec/2026/q4/715
+
+6. プレステージ・インターナショナルグループの業務システムに不正アクセス、最大約550万件の顧客情報が持ち出し
+ロードサービスの受付業務に使うシステムで、氏名、住所、車両情報、事故受付情報、一部の口座情報が対象とされています。
+https://scan.netsecurity.ne.jp/article/2026/11/16/56786.html
+
+7. フランス郵政グループ La Poste の文書発送サービス「Maileva」にサイバー攻撃、約2,200万人の個人情報漏えいの恐れ
+企業や公的機関が同サービスで発送した文書の受取人情報が対象とされています。
+https://rocket-boys.co.jp/security-measures-lab/france-la-poste-maileva-22-million-personal-data-breach-202611/
+
+8. TSMC の従業員データ漏えい、クラウド事業者経由と判明
+攻撃者が 6.9GB のデータを競売にかけ、TSMC は従業員の個人情報の流出を認めています。
+https://www.bleepingcomputer.com/news/security/tsmc-employee-data-breach-linked-to-cloud-provider/
+
+■ ⚪ 参考情報
+
+9. 三井住友海上「ご契約者さま専用ページ」に不正アクセス、約3万7,000件の顧客情報が漏えい
+中堅・中小企業向け情報提供サイト「MSコンパス」への不正アクセスもあわせて公表されています。
+https://scan.netsecurity.ne.jp/article/2026/11/16/56791.html
+
+10. アララへの不正アクセスの影響拡大、三井住友信託銀行で顧客のメールアドレス2,351件が流出
+国民生活センターも、デジタルアーツのメール誤送信防止サービス「m-FILTER MailAdviser」への不正アクセスの影響を公表しています。
+https://rocket-boys.co.jp/security-measures-lab/smtb-fleekdrive-arara-email-leak-2351-2026/
+
+11. エイコー、ランサムウェア被害を公表、振込先変更を装う連絡に注意喚起
+不動産サービス「ウチコミ！」（14万2,591アカウントに影響）や、両毛システムズ経由の広島ガスなど、ランサムウェア被害の公表が続いています。
+https://rocket-boys.co.jp/security-measures-lab/eicoh-ransomware-unauthorized-access-payment-change-2026/
+
+12. FBI が警告した AI 攻撃ツール「ARTEX」、ConnectWise のサプライチェーン侵害にも使用
+攻撃の自動化により侵入から権限奪取までが短時間化しているため、外部公開資産の監視強化が推奨されます。
+https://www.bleepingcomputer.com/news/security/fbi-warns-artex-ai-hacking-tool-is-powering-global-cyberattacks/
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://secnews-list-gcu.pages.dev/

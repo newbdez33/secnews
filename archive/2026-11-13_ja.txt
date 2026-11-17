@@ -1,0 +1,70 @@
+【日次セキュリティ情報】2026/11/13（金）｜緊急 7件・重要 4件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/12 09:15 〜 2026/11/13 09:20（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. N-able N-central のゼロデイ脆弱性「Able2Shell」「4EverAble2Shell」が実際に悪用
+30件超のゼロデイが公開され、2026.4 HF2 では認証不要の 7件（CVE）のみ修正済みです。最新パッチ適用済みのサーバーでも侵害が報告されているため、オンプレミス版を運用している場合は Legacy API をインターネットから遮断し、追加の修正を待ってください。
+https://www.securityweek.com/hackers-target-n-central-zero-days-as-n-able-rushes-patches/
+
+2. ConnectWise ScreenConnect を狙った攻撃の続報（ワーム型ツール「SCKit」）
+修正済みの CVE-2026-84869（CVSS 9.9）と、サードパーティ拡張 RMM+ の固定 API シークレット（CVE-2026-127063）が悪用され、48組織・288端末への影響が確認されています。ScreenConnect と拡張機能を最新化し、不審なリモートアクセスクライアントがないか確認してください。
+https://www.bleepingcomputer.com/news/security/new-worm-like-sckit-malware-targets-msps-in-screenconnect-attacks/
+
+3. 乗っ取られた GitHub アカウント 4,837件を使った CI シークレット窃取キャンペーン「wfx-loot」
+書き込み権限のあるリポジトリに窃取コードが仕込まれ、1,806件以上のリポジトリで CI のシークレットやクラウド認証情報が狙われました。最近の不審な push・PR・ワークフロー変更を確認し、必要に応じて Actions のシークレットをローテーションしてください。
+https://thehackernews.com/2026/11/4837-hijacked-github-accounts-ran-ci.html
+
+4. Citrix NetScaler ADC / Gateway に 28件の脆弱性（CVE-2026-107412：CVSSv4 9.5 ほか）
+ゲートウェイ／AAA 仮想サーバー構成でのメモリオーバーフローや、標準構成で発生しうる CVE-2026-120868（9.3）などが含まれ、NetScaler Console にも認証回避（CVE-2026-120869）があります。速やかに修正版へ更新してください。
+https://thehackernews.com/2026/11/citrix-patches-12-netscaler-and-secure.html
+
+5. Synology DSM の Auth API における SQL インジェクション（CVE-2026-76954：CVSS 9.8）
+リモートから任意ファイルの読み書きやサービス妨害を受ける恐れがあるため、7.2.1-69057-13 / 7.2.2-72806-10 / 7.3.2-86009-5 / 7.4.1-90080-1 以降へ更新してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-76954
+
+6. PTC Windchill / FlexPLM のデシリアライズによるリモートコード実行（CVE-2026-126325：CVSSv4 9.2）
+該当製品を利用している場合は、PTC の修正を適用してください。
+https://thehackernews.com/2026/11/ptc-patches-critical-windchill-and.html
+
+7. Intel・AMD が 11月の脆弱性情報を公開（計200件超、Intel TDX に CVSS 9.4）
+AMD の GPU・UEFI も対象です。Google Cloud の AMD Turin 搭載 VM では、ゲスト OS へのパッチ適用と停止・再起動が必要とされています。
+https://rocket-boys.co.jp/security-measures-lab/intel-amd-november-2026-security-advisories-over-200-cves/
+
+■ 🟠 重要（High）
+
+8. Windows のゼロデイ「SignDrop」の PoC が公開、CLFS ドライバー経由でローカルユーザーが SYSTEM 権限を取得
+現時点で修正プログラムはないため、EDR のアラートと Microsoft の今後の情報に注意してください。
+https://www.bleepingcomputer.com/news/security/new-windows-signdrop-zero-day-gives-hackers-system-privileges/
+
+9. PostgreSQL 18.7 / 17.12 / 16.16 / 15.20 / 14.25 公開、52件の脆弱性を修正
+CVSS 8.8 の任意コード実行（CVE-2026-6460、CVE-2026-116304 など）が含まれ、PostgreSQL 14 は今回でサポート終了のため、更新と移行を計画してください。
+https://www.postgresql.org/about/news/postgresql-187-1712-1616-1520-1425-and-19-rc-2-released-3442/
+
+10. Git 2.56.1 公開、悪意あるリポジトリの再帰クローンで任意コード実行の恐れ（CVE-2026-111760：CVSS 8.0 ほか計6件）
+--recurse-submodules 使用時に影響するため、更新までは信頼できないリポジトリの再帰クローンを避けてください。
+https://www.ithome.com.tw/news/180432
+
+11. MongoDB Server の認証不要の脆弱性（CVE-2026-118383）
+レプリカセットのフェイルオーバー時にクラッシュやコード実行につながる恐れがあるため、今週公開の修正版へ更新してください。
+https://www.security-next.com/192699
+
+■ ⚪ 参考情報
+
+12. Microsoft、11月の Windows セキュリティ更新が一部の Windows 11 でインストールに失敗する問題を確認
+10月以降の Windows 更新による SQL Server の性能・安定性の問題も確認されており、11月12日には Microsoft 365（Outlook・Teams など）で大規模障害も発生しました（攻撃の証拠はなしとのことです）。
+https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-kb5132061-installation-issues-0x80070306-0x800f0989-0x800f0993-errors/
+
+13. 国内で大規模な情報漏えいの公表が続く（ノジマオンライン 約700万件、ブックオフ子会社 638万人、ネットマイル 最大約549万人）
+ほかに千葉興業銀行（SMBCコンシューマーファイナンスへの不正アクセス）、甲賀市のランサムウェア被害、アララ経由の不二家・POPKIT のメールアドレス流出も公表されています。
+https://scan.netsecurity.ne.jp/article/2026/11/13/56774.html
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://secnews-list-gcu.pages.dev/

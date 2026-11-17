@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.wrangler/
+.env
+.env.*
+*.log
+__pycache__/
+.DS_Store
+# never commit raw mail, state or backups
+live-backup*/
+mail/
+state/
+shots/
+*_raw.*

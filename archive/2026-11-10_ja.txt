@@ -1,0 +1,63 @@
+【日次セキュリティ情報】2026/11/10（火）｜緊急 7件・重要 3件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026-11-09 09:15 JST 頃 ～ 2026-11-10 09:10 JST 頃
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. Google Chrome のゼロデイ脆弱性（CVE-2026-125350）
+XML 処理における解放済みメモリ使用（Use After Free）の脆弱性で、悪用が確認されています。Chrome 157.0.8103.50／.51 で修正されたため、ブラウザを再起動して更新を適用してください。Microsoft Edge など Chromium ベースのブラウザも更新状況を確認してください。
+https://chromereleases.googleblog.com/2026/11/stable-channel-update-for-desktop.html
+
+2. OpenSSH「sshole」（CVE-2026-123158）が CISA KEV に追加、悪用を確認
+既報の認証回避の脆弱性について、米 CISA が既知の悪用された脆弱性カタログ（KEV）に追加しました。ボットネットや暗号資産マイニング目的の攻撃者が、コマンド実行や認証情報の窃取、永続化に悪用しています。musl libc 環境で PAM を使わない sshd（Alpine Linux、Yocto 等）が対象のため、OpenSSH 10.6p2 以降への更新を確認してください。
+https://www.cisa.gov/news-events/alerts/2026/11/09/cisa-adds-four-known-exploited-vulnerabilities-catalog
+
+3. CISA KEV への追加：GPUStack、FreeSwitch、IBM Aspera Faspex
+GPUStack の認証回避（CVE-2026-102895、CVSS 9.8）、SignalWire FreeSwitch のコードインジェクション（CVE-2026-116779）、IBM Aspera Faspex の不適切な認可（CVE-2026-123218）が、悪用の証拠に基づき KEV に追加されました。GPUStack はリバースプロキシ経由や X-GPUStack-Real-IP ヘッダーの偽装で、認証なしに管理者権限を取得される可能性があります。該当製品を利用している場合は修正版を適用してください。
+https://www.cisa.gov/news-events/alerts/2026/11/09/cisa-adds-four-known-exploited-vulnerabilities-catalog
+
+4. Plex Media Server を狙う「Plex2Shell」攻撃の拡大
+4 件の脆弱性を連鎖させ、認証なしでリモートからコードを実行する攻撃が、QNAP NAS 上の Plex Media Server などに対して広がっています。Plex Media Server を最新版へ更新し、不要なインターネット公開を停止してください。
+https://www.securityweek.com/plex2shell-exploited-against-qnap-nas-users/
+
+5. Airbyte の任意コード実行の脆弱性（GHSA-g35w-6r6v-h4r7）、悪用を確認
+データ連携基盤 Airbyte の Connector Builder などに、細工した接続設定で任意のコードを実行される脆弱性があり、悪用が確認されています。2.x は閲覧権限が必要ですが、旧版 Helm Chart で導入した 1.x はネットワーク経由で認証なしに悪用される可能性があります。GitHub のアドバイザリに従い更新してください。
+https://www.security-next.com/192518
+
+6. N-able N-central の多数の未修正脆弱性の公開
+研究者が N-central の脆弱性 30 件以上を公開したことを受け、N-able はホスト型環境を停止し、オンプレミス版の利用者にもサーバーの停止を求めています。RMM 製品が侵害されると管理下の全端末に影響が及ぶため、利用している場合はベンダーの指示に従ってください。
+https://www.bleepingcomputer.com/news/security/n-able-takes-cloud-platform-offline-after-30-plus-zero-days-published/
+
+7. CVSS 9 以上の新規脆弱性（Ruby on Rails、Redpanda Connect、Kubeflow Pipelines ほか）
+Ruby on Rails の Active Storage で、ImageMagick により画像を処理している場合に認証なしで任意のファイルを書き込まれる脆弱性（CVSS 9.8）が 8.0.5.2／8.1.4.1 で修正されました。更新後はアプリケーションの秘密鍵などのローテーションも推奨されています。このほか Redpanda Connect 4.39～4.110 の認証欠如（CVE-2026-123270、CVSS 9.8）、Kubeflow Pipelines の認可不備（CVE-2026-77596、CVSS 9.6）、Pocket ID のメール検証トークンの不備（CVE-2026-115770、CVSS 9.6）、rConfig の逆シリアル化（CVE-2026-124079、CVSS 9.8）も公開されています。該当製品は修正版へ更新してください。
+https://www.ithome.com.tw/news/180273
+https://github.com/advisories/GHSA-h882-2qpw-598h
+
+■ 🟠 重要（High）
+
+8. Ethersphere の npm パッケージ bee-js と Swarm Desktop が侵害され、暗号資産ウォレットを狙うバックドア「SleepyDuck」を含む不正なバージョンが、同プロジェクトの GitHub リリース自動化を通じて公開されました。bee-js を利用している場合は依存バージョンを確認してください。
+https://socket.dev/blog/bee-js-compromise?utm_medium=feed
+
+9. MIT Kerberos（krb5）1.22.3 で、PAC サーバーチェックサムの検証不備（CVE-2026-111423）や KDC の認可データフィルタリングの不備など、21 件の CVE が修正されました。KDC を運用している場合は優先して更新してください。
+https://seclists.org/oss-sec/2026/q4/618
+
+10. Qubole が持つ顧客 AWS アカウントへの信頼済みアクセスが悪用され、10 月 14 日～26 日に複数の顧客アカウントからシークレットやデータが窃取されました。外部 SaaS に付与している AWS のクロスアカウント IAM ロールを点検してください。
+https://thehackernews.com/2026/11/hackers-exploit-quboles-trusted-aws.html
+
+■ ⚪ 参考情報
+
+11. CPython で、ssl.get_server_certificate() に ca_certs を指定しても証明書チェーンのみ検証し、ホスト名を検証しない問題（CVE-2026-19552）と、http.cookiejar が他ドメインの Cookie を削除できる問題（CVE-2026-124249）が公開されました。
+https://seclists.org/oss-sec/2026/q4/605
+
+12. 国内では情報漏えいの公表が続いています。メール配信事業者アララへの不正アクセスでは最大約 8,100 万件のメールアドレスが流出した可能性があり、セガのメールマガジン購読者 220 万件も対象となりました。このほか、ドコモオンラインショップ／My docomo の最大約 30 万件、無印良品の新たな約 27 万件、SMBC コンシューマーファイナンスの保証システムへの不正アクセス、技研製作所のランサムウェア被害（約 3,200 人）、厚生労働省の薬剤耐性菌調査システム（最大 1 万 1,652 人）などが公表されています。関連するフィッシングメールにご注意ください。
+https://www.ithome.com.tw/news/180324
+https://scan.netsecurity.ne.jp/article/2026/11/10/56724.html
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+配信の登録・解除：Outlook の 設定 → 全般 → 配布グループ で「security-news」を参加／脱退
