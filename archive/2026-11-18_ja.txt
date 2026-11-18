@@ -1,0 +1,59 @@
+【日次セキュリティ情報】2026/11/18（水）｜緊急 5件・重要 5件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/17 09:10 ～ 2026/11/18 09:10（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. OpenJDK の認証不要 RCE 脆弱性「Java4Shell」（CVE-2026-114938）、CISA が即時の修正を要請
+x86-64 版 HotSpot JVM の Base64 デコーダーのメモリ破損により、細工した入力でリモートからコードを実行される恐れがあり、Jenkins、Jira、Confluence、Keycloak なども影響を受ける可能性があります。コンテナイメージや製品に同梱された JDK も含めて棚卸しし、Oracle や各ディストリビューションの修正版が出次第、インターネット公開システムから優先して適用してください。
+https://www.bleepingcomputer.com/news/security/critical-java4shell-flaw-allows-rce-attacks-on-major-java-applications/
+
+2. Oracle 2026年11月の定例パッチ（CPU）、Oracle BI Enterprise Edition に CVSS 10.0（CVE-2026-114784）
+OBIEE 8.2.0.0.0 / 26.01.0.0.0 は認証なしの HTTP 経由で乗っ取られる恐れがあり、E-Business Suite など CVSS 9 以上の脆弱性が多数含まれます。Java SE でも認証なしで悪用可能な11件が修正されています。該当製品を利用している場合は速やかにパッチを適用してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-114784
+
+3. Microsoft の PyPI パッケージ「agent-framework」1.26.1 / 1.26.2 が改ざんされ、認証情報窃取コードを混入
+インストールすると Python の起動フックで認証情報、環境変数、クラウドのトークンを収集して外部に送信します。該当バージョンを導入した環境はアンインストールし、関係する鍵やトークンを再発行してください。
+https://socket.dev/blog/agent-framework-pypi-package-compromised-with-credential-stealer?utm_medium=feed
+
+4. N-able N-central 2026.4 HF3 で17件の脆弱性を修正、既存の脆弱性は暗号資産マイニングに悪用中
+新たに公表されたゼロデイ「4EverAble2Shell」「Agent2Shell」も悪用が確認されています。N-central を利用している場合は直ちに HF3 へ更新してください。
+https://thehackernews.com/2026/11/n-able-patches-17-n-central-flaws-as.html
+
+5. Apache Axis の重大な脆弱性（CVE-2026-90436）が悪用され、Atlassian Confluence や N-central が攻撃対象に
+Rapid7 が積極的な悪用を警告しています。Axis を組み込んだ Java 製品を利用している場合は、ベンダーの修正版を確認し適用してください。
+https://www.ithome.com.tw/news/180573
+
+■ 🟠 重要（High）
+
+6. CISA が Puppet Enterprise のデシリアライズの脆弱性（CVE-2026-115731）を既知の悪用済み脆弱性（KEV）に追加しました。
+https://www.cve.org/CVERecord?id=CVE-2026-115731
+
+7. ScreenConnect への攻撃が継続しており、ConnectWise はテクニシャンクライアントを 26.6.5 以降に更新し、該当する外部拡張機能を無効化するよう呼びかけています。
+https://thehackernews.com/2026/11/connectwise-warns-screenconnect-attacks.html
+
+8. Optimizely Web Experimentation の悪用により、国内を含む178組織の Web サイトにカード情報窃取や iOS 攻撃用の不正 JavaScript が挿入されました。
+https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites/
+
+9. Google Chrome 158 で204件の脆弱性（うち6件がクリティカル）が修正されました。Firefox 160.0.1 も公開されています。
+https://www.security-next.com/192998
+
+10. Go のビルド関連ツールに、細工されたパッケージのビルド時に任意のコードを実行される脆弱性があり、修正版が公開されました。
+https://www.security-next.com/192934
+
+■ ⚪ 参考情報
+
+11. needrestart にローカルから root へ権限昇格できる脆弱性（CVE-2026-124757）があり、Debian bookworm や Ubuntu 24.04 が影響を受けます。
+https://seclists.org/oss-sec/2026/q4/753
+
+12. GitLab が 19.5.6 / 19.4.8 / 19.3.9 を公開し、XSS や CI/CD 保護変数の認可不備など37件の脆弱性を修正しました。
+https://www.security-next.com/192966
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://newbdez33.github.io/secnews/
