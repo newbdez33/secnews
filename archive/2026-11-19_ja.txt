@@ -1,0 +1,59 @@
+【日次セキュリティ情報】2026/11/19（木）｜緊急 5件・重要 4件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/18 09:10 ～ 2026/11/19 09:10（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. Apache Roller の認証不要 RCE 脆弱性（CVE-2026-129448、CVSS 9.8）が攻撃に悪用
+XML-RPC エンドポイントが認証前にデータをデシリアライズするため、4.0.0～6.1.4 がリモートからコードを実行される恐れがあります。6.1.6 以降へ更新し、すぐに更新できない場合は web.xml の enabledForExtensions を false にするか /roller-services/xmlrpc のマッピングを削除してください。
+https://www.bleepingcomputer.com/news/security/apache-warns-of-roller-rce-vulnerability-exploited-in-attacks/
+
+2. CISA が KEV に4件を追加（LiteLLM CVE-2026-40217、Synology DSM CVE-2024-10441、REDCap CVE-2026-90817、Apache Axis CVE-2026-90436）
+いずれも実際の攻撃での悪用が確認されています。LiteLLM や Synology NAS を利用している場合はバージョンを確認して修正を適用し、LiteLLM はインターネットに公開しないでください。
+https://www.cve.org/CVERecord?id=CVE-2026-40217
+
+3. JetBrains TeamCity にリモートコード実行の脆弱性4件（CVE-2026-132231～132234、CVSS 9.9）
+CI サーバーが侵害されるとソースコードやデプロイ用の認証情報が流出する恐れがあります。自社運用の TeamCity は 2026.1.3 / 2025.11.7 へ更新してください。
+https://www.jetbrains.com/privacy-security/issues-fixed
+
+4. F5 BIG-IP にクリティカルな脆弱性6件（CVSS 9.8）
+特定の iRule や APM ポリシーを設定している場合、認証なしで TMM を停止させられ、コード実行につながる恐れもあります。F5 のアドバイザリに従い、エンジニアリングホットフィックスまたは 21.1.0.3 / 17.5.1.10 / 17.1.3.6 を適用してください。
+https://thehackernews.com/2026/11/f5-warns-6-critical-big-ip-flaws-can.html
+
+5. Incus 7.6.0 より前のバージョンに認証回避（CVE-2026-130778、CVSS 10.0）など複数のクリティカルな脆弱性
+TLS クライアント証明書チェーンに信頼済み証明書を付け加えるだけでクラスタレベルの権限を取得される恐れがあり、ホスト上のファイルを読み書きされる問題もあります。7.6.0 へ更新してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-130778
+
+■ 🟠 重要（High）
+
+6. nginx の HTTP/2 処理に認証不要でコード実行につながる脆弱性「nginx2root」（CVE-2026-123007）など5件が修正されました。1.9.5 以降が影響を受け PoC も公開されているため、1.31.9 / 1.30.7 へ更新し、更新できない場合は一時的に HTTP/2 を無効化してください。
+https://nginx.org/en/security_advisories.html
+
+7. Ubuntu の cloud-init に、SSSD を導入済みで未設定の環境でパスワードなしにアカウントへアクセスされる恐れがある脆弱性（USN-9153-1）が修正されました。
+https://ubuntu.com/security/notices/USN-9153-1
+
+8. プレイド「KARTE」への不正アクセスの影響が拡大し、DHC 約1,911万件、JINS 最大約1,829万件、三菱UFJ銀行 約650万件などの漏えい（可能性を含む）が公表されました。
+https://www.itmedia.co.jp/news/article/2611/18/2000003287/
+
+9. 楽天証券のテスト環境が不正アクセスを受け、マスキングされていない本番の顧客情報（最大約1,572万口座分）が漏えいした可能性があります。
+https://piyolog.hatenadiary.jp/entry/2026/11/18/100525
+
+■ ⚪ 参考情報
+
+10. TPM のロックアウトを物理的にリセットし、Windows Hello や BitLocker の短い PIN を数日で総当たりできる攻撃手法が報告されました。6桁以上の PIN の利用が推奨されます。
+https://thehackernews.com/2026/11/flash-chip-attack-bypasses-tpm-lockout.html
+
+11. PHP 公式サイトが、近日中にクリティカルなセキュリティ更新をリリースすると予告しました。
+https://www.php.net/archive/2026.php#2026-11-18-1
+
+12. Notion AI の処理委託先である Fireworks AI 社が不正アクセスを受け、国内複数企業の Notion AI とのやり取りが流出した可能性があります。
+https://scan.netsecurity.ne.jp/article/2026/11/19/56840.html
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://newbdez33.github.io/secnews/
