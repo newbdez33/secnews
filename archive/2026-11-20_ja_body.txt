@@ -1,0 +1,65 @@
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/19 09:10 ～ 2026/11/20 09:06（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. VMware vCenter の認証回避の脆弱性（CVE-2026-123890、CVSS 9.8）がゼロデイとして悪用
+認証なしで管理者セッションを取得される恐れがあり、Mandiant は中国系グループが修正前の2か月以上にわたり悪用し、SAML 署名情報の窃取や SSO 管理者の作成を行っていたと報告しています。9.1.1.0200 / 9.0.2.0200 / 8.0 U3m へ更新したうえで侵害の痕跡を調査してください（7.0 は公開パッチなし）。
+https://www.securityweek.com/newly-patched-vmware-vcenter-flaw-exploited-as-zero-day-by-chinese-apt/
+
+2. Cisco Expressway のリモートコード実行の脆弱性（CVE-2026-76466、CVSS 9.8）が PoC 公開後に悪用
+クラスタ構成の Expressway が認証なしで root 権限を奪われ、内部ネットワークへの横展開に使われた事例が報告されています。X15.5.20 へ更新し、すぐに更新できない場合は TCP 4371～4372 への接続を信頼できるクラスタノードのみに制限してください。
+https://www.securityweek.com/hackers-exploit-cisco-expressway-vulnerability-soon-after-poc-release/
+
+3. OpenJDK の脆弱性「Java4Shell」（CVE-2026-114938）で探索・悪用の試みを確認
+複数のセキュリティ企業が攻撃通信を観測しており、Red Hat、AWS、Oracle なども関連情報を公開しています。Java を利用するすべてのサービスで修正済みの JDK へ早急に更新してください。
+https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/
+
+4. PHP が18件の脆弱性を修正、PHP-FPM のリクエストスマグリング（CVE-2026-129289、CVSS 9.2）など緊急の RCE を含む
+PHP-FPM へのバックエンド接続を再利用する nginx / Apache / HAProxy などの構成では、認証なしでコードを実行される恐れがあります。8.5.13 / 8.4.28 / 8.3.37 / 8.2.36 へ更新し、暫定策としてバックエンド接続の再利用停止と session.upload_progress.enabled=0 の設定を検討してください。
+https://www.bleepingcomputer.com/news/security/php-security-updates-fix-18-flaws-including-critical-rce-bugs/
+
+5. Microsoft Agent Framework の PyPI パッケージが侵害され、認証情報を盗む不正版が公開
+不正版 1.26.1 / 1.26.2 は Python 起動時に自動実行され、クラウドや GitHub、CI/CD の認証情報を外部へ送信します。該当版をインストールした環境では、すべての認証情報を再発行し、環境を再構築してください。
+https://www.ithome.com.tw/news/180624
+
+6. Drupal コアのインストーラーの脆弱性（CVE-2026-132165、Critical）
+特定の条件下で認証なしにサイトを再インストールされ、乗っ取りやコード実行につながる恐れがあり、PoC も存在します。11.4.13 / 11.3.22 / 10.6.22 へ更新し、更新後も Web サーバー側で /core/install.php へのアクセスを遮断してください。
+https://www.bleepingcomputer.com/news/security/drupal-patches-critical-rce-flaw-warns-exploits-may-surface-quickly/
+
+7. JetBrains TeamCity にリモートコード実行の脆弱性（CVE-2026-132891、CVSS 9.8）
+前日に公表された4件とは別の脆弱性です。自社運用の TeamCity は 2026.2 / 2026.1.4 / 2025.11.8 へ更新してください。
+https://github.com/advisories/GHSA-cgwp-6hqw-5g7h
+
+8. Splunk が約140件の脆弱性を修正、Splunk Enterprise の認証不要の脆弱性（CVE-2026-76536、CVSS 9.4 ほか）を含む
+Splunk Enterprise、Enterprise Security、SOAR が対象です。Enterprise は 10.6.1 / 10.4.5 / 10.2.9 / 10.0.12 / 9.4.17、SOAR は 8.8.0 以降へ更新してください。
+https://www.securityweek.com/splunk-patches-nearly-140-flaws-across-three-core-products/
+
+■ 🟠 重要（High）
+
+9. nginx の「NGINX2Root」続報：HTTP/2 の無効化で緩和できるのは5件中2件のみとの指摘
+HTTP/2 の無効化だけに頼らず、1.31.9 / 1.30.7 またはディストリビューションの修正版へ早急に更新してください。
+https://seclists.org/oss-sec/2026/q4/783
+
+10. Ruby の正規表現・文字列処理に7件のメモリ安全性の脆弱性、うち5件で RCE の PoC
+外部入力から正規表現を組み立てるアプリなどが影響を受けるため、Ruby 4.0.10 / 3.4.13 / 3.3.14 へ更新し、コンテナイメージも再構築してください。
+https://seclists.org/oss-sec/2026/q4/782
+
+■ ⚪ 参考情報
+
+11. Docker Hub の公開イメージに含まれた AWS キーが最短7.86秒で悪用されたとの研究結果
+https://rocket-boys.co.jp/security-measures-lab/docker_hub_containerbots_aws_api_keys_7_86_second/
+
+12. 湘南美容クリニックの SBC で約162万人分の個人情報が流出、旧パスワードは暗号化せず保存
+https://www.bleepingcomputer.com/news/security/hackers-steal-data-of-16-million-sbc-medical-group-customers/
+
+13. ユミルリンクのメール配信サービスへの不正アクセスで延べ約4,786万件の配信先情報が漏えい
+https://scan.netsecurity.ne.jp/article/2026/11/20/56860.html
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://newbdez33.github.io/secnews/
