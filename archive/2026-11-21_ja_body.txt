@@ -1,0 +1,61 @@
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/20 09:06 ～ 2026/11/21 09:03（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. Cisco Expressway のリモートコード実行の脆弱性（CVE-2026-76466、CVSS 9.8）が CISA KEV に追加、4台の侵害と内部ネットワークへの侵入を確認
+PoC 公開直後に悪用され、侵害した機器を足がかりに内部ネットワークへ到達した事例が報告されています。X15.5.20 へ更新し、すぐに更新できない場合は TCP 4371～4372 への接続を信頼できるクラスタノードのみに制限してください。同日、SAP NetWeaver の CVE-2025-42884 も KEV に追加されています。
+https://thehackernews.com/2026/11/hackers-exploit-critical-cisco.html
+
+2. pip 26.2.2 より前の版に同梱された certifi に、侵害された eMudhra の証明書が含まれる（CVE-2026-133949、Critical）
+Python 公式は、侵害された中間証明書を拒否する版の Python へ先に更新するか、ハッシュ固定で安全な版の pip を導入したうえで pip を更新するよう案内しています。CI 環境やコンテナイメージ内の pip も対象です。
+https://seclists.org/oss-sec/2026/q4/803
+
+3. Vite の開発サーバーに認証不要のリモートコード実行の脆弱性（CVSS 9.1）、詳細と PoC が公開済み
+--host や server.host で開発サーバーをネットワークに公開している場合が対象です。6.4.6 / 7.3.8 / 8.1.7 / 8.2.5 / 8.3.7（Vite-plus は 1.5.1）以降へ更新し、開発サーバーを外部に公開しないでください。
+https://github.com/vitejs/vite/security/advisories/GHSA-p4f5-76q4-ffq7
+
+4. Apache Tomcat に緊急の脆弱性3件（CVE-2026-133325 CVSS 9.8、CVE-2026-118028 / CVE-2026-116561 CVSS 9.1）
+TLS 1.3 と PSK を使うクラスタへの未認証ノードの参加、RedirectValve のリダイレクト後の処理継続、Jakarta Authentication の例外時に 200 を返す問題が含まれます。11.0.30 / 10.1.63 および 9.0 系の修正版へ更新してください。
+https://github.com/advisories/GHSA-j322-r8cv-7j54
+
+5. Synology DSM / BeeStation OS に緊急の脆弱性（CVE-2026-120382、CVSS 9.8）、一部の版は修正版未提供
+nginx の脆弱性 CVE-2026-123007 に関する公告も出ています。修正版の提供状況を確認して速やかに適用し、それまでは NAS の管理画面をインターネットに公開しないでください。
+https://www.ithome.com.tw/news/180680
+
+6. Ruby の脆弱性「Ruby2Shell」（CVE-2026-132825）続報：標準構成の Rails / Sinatra アプリで認証なしにヒープオーバーフローを誘発可能
+Cloudflare は全プランで WAF ルールを提供していますが、あくまで緩和策です。Ruby 4.0.10 / 3.4.13 / 3.3.14 へ更新し、コンテナイメージも再構築してください。
+https://www.securityweek.com/ruby-patches-ruby2shell-vulnerability-that-could-lead-to-rce/
+
+■ 🟠 重要（High）
+
+7. WhatsApp が3件の脆弱性を修正、Android 版の CVE-2026-23871 は詐欺メッセージでの悪用が疑われる。Android 版 2.26.17.4 以降へ更新してください。
+https://www.securityweek.com/whatsapp-fixes-flaw-uncovered-while-disrupting-scam-campaign/
+
+8. Linux KVM の脆弱性（CVE-2026-99312）で、AMD ホスト上の仮想マシンからホストのメモリを読み取り可能。ネストされた仮想化を有効にしている環境ではカーネルを更新してください。
+https://thehackernews.com/2026/11/new-linux-kvm-flaw-cve-2026-99312-lets.html
+
+9. Windows の未修正ゼロデイ「FastUnlock」、物理的に入手したロック中の PC でサインインせずにプログラムを実行可能。修正までは BitLocker の有効化と端末管理を徹底してください。
+https://thehackernews.com/2026/11/new-unpatched-windows-0-day-fastunlock.html
+
+10. SonicWall、第6世代ファイアウォールは緊急の脆弱性でも修正しないとして即時の置き換えを要請。利用中の場合はインターネット境界から外し、早急に更新してください。
+https://thehackernews.com/2026/11/sonicwall-warns-gen-6-firewalls-wont.html
+
+■ ⚪ 参考情報
+
+11. 攻撃者がオープンソースの AI ペネトレーションテストツール「Cairn」でゼロデイを発見し、サーバーを乗っ取ったとの報告
+https://therecord.media/amazon-research-cairn-ai-university-attacks-possible-zero-day
+
+12. デジタル庁、政府共通基盤 GSS のファイル共有サービスでファイルの一部が外部に漏えいした可能性を公表
+https://www.itmedia.co.jp/news/article/2611/20/2000003381/
+
+13. KARTE への不正アクセスの影響は延べ約2,200社に拡大、ピーチ・アビエーションでもメール配信事業者経由で約900万件が漏えい
+https://news.web.nhk/newsweb/na/nd-20261120de79350
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://newbdez33.github.io/secnews/
