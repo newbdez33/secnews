@@ -1,0 +1,65 @@
+【日次セキュリティ情報】2026/11/22（日）｜緊急 6件・重要 4件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/21 09:03 ～ 2026/11/22 09:10（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. Microsoft Entra Connect Health の脆弱性が悪用され、テナント情報が窃取される
+Microsoft は、攻撃者が同サービスの脆弱性を悪用し、管理者のメールアドレスやテナント構成情報に不正アクセスしたと公表しました。Microsoft 365 / Entra ID を利用している組織は、Microsoft からの通知の有無を確認し、テナントの監査ログを点検してください。
+https://www.bleepingcomputer.com/news/security/microsoft-entra-connect-health-flaw-exploited-to-steal-tenant-data/
+
+2. GnuPG のライブラリ GPGME に緊急のメモリ破損の脆弱性（CVE-2026-129975）
+異常に長いユーザー ID を持つ悪意ある OpenPGP 鍵を処理するだけで発生し、アプリケーションのデータが漏えいするおそれがあります。GPGME 2.3.1 で修正済みのため、Linux ディストリビューションや Gpg4win の更新を適用してください。
+https://seclists.org/oss-sec/2026/q4/805
+
+3. Red Hat が PHP の Critical 更新を4件公開（RHEL 8 の php:7.4、RHEL 9.8 / 10.2 EUS の php 8.2・8.3・8.4）
+重要度 Critical と評価されています。PHP を稼働させている RHEL サーバーは速やかに更新してください。
+https://access.redhat.com/errata/RHSA-2026:100991
+
+4. SurrealDB に権限チェック回避の脆弱性（CVE-2026-134292、CVSS 9.8）
+組み込み JavaScript エンジンから関数の実行制限を回避できます。1.0.0 以降 4.0.0 未満が対象のため、4.0.0 へ更新してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-134292
+
+5. WordPress プラグインに CVSS 9.8 の脆弱性2件（Restrictions for BuddyPress、Nexter Blocks Pro）
+Restrictions for BuddyPress 1.5.4 以前は認証不要のリモートコード実行、Nexter Blocks Pro 5.0.10 以前は管理者権限への昇格が可能です。利用している場合は修正版へ更新するか、プラグインを無効化してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-120539
+https://nvd.nist.gov/vuln/detail/CVE-2026-125294
+
+6. D-Link DIR-600L にスタックバッファオーバーフローの脆弱性（CVE-2026-133993、CVSS 10.0）
+GENA サブスクリプション処理を通じてリモートから悪用可能です。旧型機のため、使用中の場合は機器の置き換えを検討してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-133993
+
+■ 🟠 重要（High）
+
+7. 続報：AI エージェント「Cairn」で発見・悪用されたゼロデイは医療画像サーバー MONAI Label の脆弱性と判明、root 権限を奪取
+MONAI Label を運用している場合は、外部からのアクセスを直ちに制限してください。
+https://www.securityweek.com/amazon-china-linked-hackers-ai-agents-exploited-medical-software-zero-day/
+
+8. Rclone の serve sftp に認証回避の脆弱性（CVE-2026-134352、CVSS 8.1）。1.51.0 以降 1.76.0 未満が対象のため、1.76.0 へ更新してください。
+https://github.com/advisories/GHSA-8f63-3gq3-vj4r
+
+9. Rackspace Spot が不正アクセスを受け、顧客の Kubernetes Secrets が閲覧される。利用者はクラスタ内のシークレットをすべてローテーションしてください。
+https://www.bleepingcomputer.com/news/security/rackspace-spot-breach-let-hackers-access-customer-kubernetes-secrets/
+
+10. メルカリ、Notion AI の処理委託先 Fireworks AI への不正アクセスにより、従業員が入力した文章や AI の回答記録が流出したおそれ（計3,796名分）。生成 AI への入力内容も委託先を経由することに留意してください。
+https://rocket-boys.co.jp/security-measures-lab/mercari-notion-ai-fireworks-3796-data-leak-risk-202611/
+
+■ ⚪ 参考情報
+
+11. KARTE への不正アクセスの影響がさらに拡大（丸井・エポスカード約1,733万件、ZOZOTOWN 約1,518万人、三井住友銀行最大約1,400万件など）。各社を装ったフィッシングに注意してください。
+https://rocket-boys.co.jp/security-measures-lab/marui-group-epos-card-karte-customer-data-breach-1733million/
+
+12. Ghostscript 10.08.0 で「upload2shell」を含む複数の脆弱性が修正済みであることが周知される。アップロードされたファイルを処理するサービスでは版数を確認してください。
+https://seclists.org/oss-sec/2026/q4/806
+
+13. FBI が2か月で2度目の侵害を受けたと報道、今回は全米の警察データベース NCIC が標的
+https://www.bleepingcomputer.com/news/security/fbi-reportedly-hacked-again-this-time-targeting-nationwide-police-database/
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://newbdez33.github.io/secnews/
