@@ -1,0 +1,60 @@
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/22 09:10 ～ 2026/11/23 09:10（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. GL.iNet のクラウド管理サービスの脆弱性が悪用され、ルーターや KVM 機器にマルウェアが感染
+攻撃者が GoodCloud 経由でバックドアや root 権限のリバースシェルを設置しました。クラウド側は修正済みですが感染済み機器は自動では駆除されないため、GL.iNet 製品を利用している場合は「crond -i /tmp/.log」プロセスの有無を確認し、最新のセキュリティファームウェア（KVM は 1.10.3 以降）を適用してください。感染が疑われる機器は設定を引き継がずに初期化し、認証情報を変更してください。
+https://www.bleepingcomputer.com/news/security/hackers-exploit-glinet-cloud-flaw-to-infect-routers-kvm-devices/
+
+2. N-able MailAssure（SpamExperts）に SSRF の脆弱性（CVE-2026-134624、GitHub Advisory で Critical）
+認証済み API ユーザーが LDAP 同期の接続確認機能を使い、サーバーから任意の内部ホスト・ポートへ接続させることができます。20261121.1943 以降へ更新してください。
+https://github.com/advisories/GHSA-g4r8-gwqr-j289
+
+3. Red Hat が PHP の Critical 更新を追加で2件公開（RHEL 7 ELS の php、RHEL 8 の php:8.2）
+前日の4件に続く更新で、重要度 Critical と評価されています。PHP を稼働させている RHEL サーバーは併せて更新してください。
+https://access.redhat.com/errata/RHSA-2026:101337
+https://access.redhat.com/errata/RHSA-2026:101276
+
+4. WordPress プラグインに CVSS 9.8 の脆弱性2件（APCu Manager、Simple Shopping Cart）
+APCu Manager 4.6.1 以前（CVE-2026-131754）と Simple Shopping Cart 5.3.3 以前（CVE-2026-131782）に信頼できないデータのデシリアライズによるオブジェクトインジェクションがあります。利用している場合は修正版へ更新するか、プラグインを無効化してください。
+https://github.com/advisories/GHSA-7jwg-jc4p-j4xh
+https://github.com/advisories/GHSA-mvjg-64jh-vxm6
+
+■ 🟠 重要（High）
+
+5. OpenRouter が AI 推論プロバイダ3社を除外、数か月にわたりプロンプトが窃取され AWS 認証情報も悪用
+Zero Data Retention 指定のリクエストも複製されており、窃取された AWS キーで S3 や Secrets Manager の探索、IAM ユーザー作成の試行が行われました。第三者の推論プロバイダやルーター経由で認証情報を含むプロンプトを送ったことがある場合は、該当する認証情報を変更してください。
+https://thehackernews.com/2026/11/openrouter-drops-3-providers-after.html
+
+6. EC プラットフォーム Cleverbridge が不正アクセスを受け、クレジットカード番号とセキュリティコードが窃取されました。
+https://www.bleepingcomputer.com/news/security/cleverbridge-warns-hackers-stole-credit-card-numbers-cvvs-in-data-breach/
+
+7. タワーレコードの通販サイトが不正アクセスを受け、メールアドレスや氏名など約1,100万件の個人情報が流出しました。
+https://news.web.nhk/newsweb/na/nd-20261122de79936
+
+8. プレイド「KARTE」への不正アクセスの影響が拡大し、ポーラ（56,349件）とビームス（56,187件）も会員 ID 等の流出を公表しました。
+https://rocket-boys.co.jp/security-measures-lab/pola_karte_pola_id_56349_data_leak_20261120/
+https://rocket-boys.co.jp/security-measures-lab/beams_club_56187_karte_member_id_possible_leak_20261/
+
+■ ⚪ 参考情報
+
+9. メール配信事業者 WOW WORLD のサーバーが不正アクセスを受け、クライアント企業4社の情報約4万9,000件（Vポイントのメールアドレスを含む）が漏えいしました。
+https://rocket-boys.co.jp/security-measures-lab/wow-world-unauthorized-access-49000/
+
+10. メルセデス・ベンツ日本のロードサービス委託先 PCS が不正アクセスを受け、利用者約1万8,000人の住所や車台番号が流出しました。
+https://rocket-boys.co.jp/security-measures-lab/mercedes_benz_japan_pcs_touring_support_18000_vehicle_info_breach/
+
+11. 六花亭のオンラインショップで流出した可能性のある約8,000件のクレジットカード情報について、不正利用とみられる被害が確認されました。
+https://news.web.nhk/newsweb/na/nd-20261122de79904
+
+12. shadow 4.20.4 が公開され、一般ユーザーが SUID の newgidmap を使って root 所有ファイルの先頭5バイトを書き換えられる問題（ローカル、完全性/DoS）が修正されました。
+https://seclists.org/oss-sec/2026/q4/819
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://newbdez33.github.io/secnews/
