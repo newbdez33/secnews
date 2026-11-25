@@ -1,0 +1,66 @@
+【日次セキュリティ情報】2026/11/25（水）｜緊急 6件・重要 4件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/24 09:15 ～ 2026/11/25 09:15（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. CISA が KEV に悪用確認済みの脆弱性3件を追加（Drupal Core、Optimizely、Idunno.AntiCsrf）
+Drupal Core のインストーラーの脆弱性（CVE-2026-132165、認証なしで install.php からサイト乗っ取りや RCE のおそれ）、Optimizely Web Experimentation の登録フローの脆弱性（CVE-2026-132224）、Idunno.AntiCsrf（CVE-2026-131914）が追加され、米連邦機関の対応期限は 11/27 です。Drupal を運用している場合は直ちに修正版を適用し、install.php へのアクセスを制限してください。
+https://www.cisa.gov/news-events/alerts/2026/11/24/cisa-adds-three-known-exploited-vulnerabilities-catalog
+
+2. Check Point Security Management サーバーが AI を用いた攻撃で侵害、22組織・24台
+GreyNoise によると、攻撃者は 99 の IP アドレスから自動化された探索と悪用を行い、侵害した機器に SSH 公開鍵を設置しており、活動は継続中とみられます。管理サーバーに不審な SSH 鍵や証明書管理タスクがないか確認してください。
+https://www.securityweek.com/check-point-security-management-servers-hacked-in-ai-assisted-campaign/
+
+3. VMware vCenter に新たな認証回避の脆弱性（CVE-2026-123903、CVSS 9.8）
+VMware Directory Service（vmdir）の問題で、先週ゼロデイ悪用された CVE-2026-123890 とは別の脆弱性です。ESX、Workstation、Fusion などを含め計23件が修正されており、vCenter 8.0 は 8.0 U3m、VCF は 9.1.2／9.0.2.0300／5.2.5 へ更新してください。
+https://thehackernews.com/2026/11/vmware-vcenter-hit-by-another-critical.html
+
+4. Google Chrome に緊急の脆弱性（CVE-2026-134401、CVSS 9.6）
+Variations コンポーネントの入力検証不備により、細工した Web ページ経由でサンドボックス外のコード実行につながるおそれがあります。デスクトップ版、Android 版、延長安定版とも 158.0.8127.88 以降へ更新してください。
+https://github.com/advisories/GHSA-vcxr-fgjm-43ff
+
+5. Thymeleaf 3.1.6 未満に制限付き式モードの回避（CVE-2026-136410、CVSS 9.0）
+認証なしで th:utext、th:on* ハンドラー、フラグメント名などへの入力から制限を回避されるおそれがあります。Spring 等で Thymeleaf を利用している場合は 3.1.6.RELEASE 以降へ更新してください。
+https://github.com/advisories/GHSA-xh7h-9cr4-vfvf
+
+6. WHMCS に複数の脆弱性（CVE-2026-93700 は CVSS 9.0、ログイン不要の SQL インジェクションも）
+メールキャンペーン機能から設定ファイルの読み取りとコード実行が可能な問題（CVE-2026-93700）と、ショッピングカートの SQL インジェクション（CVE-2026-82981）などが修正されました。9.0.10／8.13.8／9.1.2 へ更新し、公告に従って既存のメールキャンペーンの削除とテンプレートキャッシュの消去も行ってください。
+https://github.com/advisories/GHSA-3pmp-pmrx-j48r
+
+■ 🟠 重要（High）
+
+7. Firefox 161 で 110件の脆弱性を修正（サンドボックス回避13件を含む）、Thunderbird では署名付きメールの送信元偽装を修正
+ESR 版も更新されています。Firefox と Thunderbird を最新版へ更新してください。
+https://www.security-next.com/193284
+
+8. Docker Engine 29.10.1 と runc のセキュリティ更新
+docker cp 実行中にコンテナ内のプロセスが読み取り専用の bind mount を書き込み可能にし、ホスト側ディレクトリを改ざんできる問題（CVE-2026-135124）などが修正され、Debian からは runc のコンテナエスケープ関連の更新（DSA-6656-1）も出ています。Docker ホストを更新してください。
+https://github.com/moby/moby/releases/tag/docker-v29.10.1
+
+9. Joomla! Core に RCE の脆弱性（CVE-2026-129393）
+メディアのカスタムフィールドのパラメーターのエスケープ不備により RCE のおそれがあり、4.0.0～5.4.10 と 6.0.0～6.2.0 が対象です。Web インストーラーの認証欠如（CVE-2026-123214）なども同時に修正されているため、最新版へ更新してください。
+https://github.com/advisories/GHSA-mf75-79r6-mp6p
+
+10. OpenResty stream-lua-nginx-module に Use After Free（CVE-2026-136412、CVSS 8.1）
+リモートの相手が cosocket 接続を中断することで解放済みメモリへのアクセスを引き起こせるおそれがあります。0.0.20rc4 以降へ更新してください。
+https://github.com/advisories/GHSA-q6cp-77cr-6x4f
+
+■ ⚪ 参考情報
+
+11. Okta が ShinyHunters 関連のボイスフィッシング集団と新たなリークサイト「INCEPTION」を報告
+IT サポートを装った電話で SSO 認証情報をだまし取る大規模な攻撃が確認されています。電話で MFA コードやリセットを求められても応じないよう周知してください。
+https://thehackernews.com/2026/11/okta-links-shinyhunters-associated.html
+
+12. 国内の情報漏えい公表が続く（京王グループ、楽天証券、JAXA、日本マクドナルド）
+京王グループで約1,063万人分（一部パスポートの写しやクレジットカード番号を含む）、楽天証券で約441万件の漏えいが公表されたほか、JAXA の地球観測データ公開システムや日本マクドナルドのアプリでも不正アクセスが公表されました。関連するフィッシングメールにご注意ください。
+https://news.web.nhk/newsweb/na/nd-20261124de80663
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://newbdez33.github.io/secnews/
