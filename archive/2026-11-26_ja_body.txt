@@ -1,0 +1,57 @@
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/25 09:15 ～ 2026/11/26 09:10（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. CISA が KEV に悪用確認済みの脆弱性10件を追加（Juniper Session Smart、Mitel MiCollab、Xen Orchestra、Danfoss）
+Juniper Session Smart Router／Conductor（CVE-2026-103406、米連邦機関の対応期限 11/28）、Mitel MiCollab の5件（OS コマンドインジェクション、危険なファイルのアップロードなど）、Xen Orchestra（CVE-2026-133469）、Danfoss AK-SM 800A シリーズの3件が追加されました。該当製品を利用している場合は直ちに修正版を適用し、管理画面をインターネットに公開しないでください。
+https://www.cisa.gov/news-events/alerts/2026/11/25/cisa-adds-10-known-exploited-vulnerabilities-catalog
+
+2. Palo Alto Networks PAN-OS で悪用済みの Fragnesia（CVE-2026-46300）を修正
+PHP2Shell と Linux カーネルの権限昇格脆弱性 Fragnesia を連鎖させ、インターネットに公開された管理インターフェースから root 権限を取得する攻撃が確認されています。PAN-OS 10.2～12.2 の修正版を適用し、管理インターフェースへのアクセスを信頼できる内部 IP に限定してください。
+https://www.securityweek.com/palo-alto-networks-patches-fragnesia-flaw-used-to-root-firewalls/
+
+3. Elixir／Erlang のパッケージレジストリ Hex.pm が CVSS 10.0 の脆弱性（CVE-2026-129514）を悪用され侵害
+本番サーバー6台で OS コマンドが実行され、パッケージの改ざんは確認されていないものの、メールアドレス、パスワードハッシュ、2要素認証のシークレットが読み取られた可能性があります。hex.pm アカウントをお持ちの場合はパスワード変更と2要素認証の再設定を行い、新しいクライアントが公開されるまでは repo.hex.pm からのみパッケージを取得してください。
+https://thehackernews.com/2026/11/hackers-exploited-cvss-100-hexpm-rce.html
+
+4. GeoServer の新たな脆弱性2件（CVE-2026-120705、CVE-2026-129243）が攻撃に悪用
+認証なしのファイル読み取りとサービスのセキュリティルール回避の脆弱性で、ハードコードされた remember-me 鍵の問題（CVE-2026-129245、CVSS 9.2）などと組み合わせると認証なしの RCE につながるおそれがあります。2.27.7／2.28.6／3.0.2 へ更新してください。
+https://thehackernews.com/2026/11/hackers-exploit-two-geoserver-flaws-as.html
+
+5. Jenkins プラグインに複数の脆弱性（Script Security のサンドボックス回避 CVE-2026-136835 は CVSS 9.9）
+Script Security と Pipeline: Groovy のサンドボックス回避、Warnings プラグインでのコントローラー上のコード実行、Configuration as Code での任意ファイルや機密情報の読み取りなど11プラグインの問題が修正されました。Jenkins を運用している場合は該当プラグインを修正版へ更新してください。
+https://www.jenkins.io/security/advisory/2026-11-25/
+
+■ 🟠 重要（High）
+
+6. 1Password で従業員の GitHub アカウント侵害により一部顧客情報が流出（氏名、メールアドレス、招待／復旧用トークンなど。保管庫と暗号鍵は影響なし）、1Password を装ったフィッシングにご注意ください。
+https://www.bleepingcomputer.com/news/security/1password-customer-data-stolen-after-employee-github-account-breach/
+
+7. Windows の11月更新プログラム適用後に NTLM 認証が失敗する問題を Microsoft が確認しており、認証プロキシや SSO 製品を利用している環境では一時回避策（ClientAllowUnsignedNtlm）や Kerberos への移行を検討してください。
+https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-authentication-issues-after-november-updates/
+
+8. AWS Systems Manager の管理ランブック AWSConfigRemediation-EnableSystemsManagerSessionManagerAuditLogsToS3 の旧リビジョンで Session Manager 設定に任意コマンドを注入できる問題（CVE-2026-134070）があり、最新リビジョンの利用と各リージョンの SSM-SessionManagerRunShell の確認を行ってください。
+https://aws.amazon.com/security/security-bulletins/rss/2026-203-aws/
+
+9. Ubuntu の authd で初回 SSH ログイン時に UID／GID が誤って割り当てられ他ユーザーのファイルにアクセスできる問題（USN-9199-1）が修正されたため、該当環境を更新してください。
+https://ubuntu.com/security/notices/USN-9199-1
+
+■ ⚪ 参考情報
+
+10. WordPress が開発者アカウント侵害によりバックドアを仕込まれた WP Connect のプラグイン6件を公開前にブロックし、公開を停止しました。
+https://thehackernews.com/2026/11/wordpress-blocks-six-backdoored-wp.html
+
+11. Microsoft が、中国や北朝鮮の攻撃グループが AI 侵入テストフレームワーク「ARTEX」を偵察や認証情報攻撃の効率化に悪用していると報告しました。
+https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse/
+
+12. 国内で大規模な情報漏えいの公表が続いており（ビックカメラグループ約1,520万件、KARTE への不正アクセスによる JINS 最大約1,829万件・パルシステム約200万件など、タワーレコード約1,100万件）、関連するフィッシングメールにご注意ください。
+https://scan.netsecurity.ne.jp/article/2026/11/26/56902.html
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://newbdez33.github.io/secnews/
