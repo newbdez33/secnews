@@ -1,0 +1,58 @@
+【日次セキュリティ情報】2026/11/27（金）｜緊急 4件・重要 4件
+
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/26 09:10 ～ 2026/11/27 09:10（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. Drupal コアに新たな「Highly Critical」脆弱性（CVE-2026-136716）、攻撃に悪用
+先日の CVE-2026-132165（Fail2Install）の修正後も、異常または未完了のインストール状態にあるサイト（本番サイトを含む）が乗っ取られる問題で、悪用が確認されています。11.4.14／11.3.23／10.6.23 へ更新して update.php を実行し、ログと user 1 アカウントのメールアドレス・パスワードを確認してください（11.0～11.2、10.5 以下はサポート終了のため修正なし）。
+https://thehackernews.com/2026/11/drupal-warns-of-new-highly-critical.html
+
+2. Traefik に認可回避の脆弱性（CVE-2026-137481、CVSS 9.3）
+sanitizePath がパスパラメータ付きのドットセグメント（/..;x/ など）を解決しないため、ルーター照合やミドルウェア適用をすり抜けて認証系ミドルウェアを回避できるおそれがあります。2.11.62／3.7.18 へ更新してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-137481
+
+3. Budibase に深刻な脆弱性3件（最大 CVSS 10.0）
+認証なしで __proto__ を使ったプロトタイプ汚染により MongoDB のクエリ条件を消去できる問題（CVE-2026-137498）、認証回避（CVE-2026-137499）、テナント間のファイル参照（CVE-2026-137494）が修正されました。4.0.0 へ更新してください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-137498
+
+4. llama.cpp の RPC サーバーに認証なしのヒープ範囲外書き込み（CVE-2026-137567、CVSS 9.8）
+b11450 以降 b12658 未満の ggml RPC サーバーで、リモートから任意のヒープアドレスに書き込める問題です。b12658 以降へ更新し、RPC ポートをネットワークに公開しないでください。
+https://nvd.nist.gov/vuln/detail/CVE-2026-137567
+
+■ 🟠 重要（High）
+
+5. 北朝鮮関連の PolinRider キャンペーンにより 7,600 件以上の GitHub リポジトリが汚染され、盗んだ GitHub 認証情報で既存コミットを書き換えて force-push し、ビルドや VS Code でのフォルダーオープン時にローダーが実行されるため、リポジトリの不審な force-push の確認とトークン権限の最小化を行ってください。
+https://thehackernews.com/2026/11/north-korea-linked-polinrider-poisons.html
+
+6. SEPPmail Secure E-Mail Gateway 15.1.2 未満に認証前の脆弱性（CVE-2026-130637）やハードコードされた予備シークレット（CVE-2026-124843）などがあるため、15.1.2 へ更新してください。
+https://github.com/advisories/GHSA-5pph-7rm4-335j
+
+7. Red Hat が RHEL 8 カーネル（nfsd の範囲外書き込み CVE-2026-99362、権限昇格 CVE-2026-99236）と Ruby（ヒープバッファオーバーフロー CVE-2026-132825）の Critical 更新を公開したため、該当環境を更新してください。
+https://access.redhat.com/errata/RHSA-2026:103817
+
+8. Exim 4.100.2 が公開され、SMTP 受信時のヘッダーデコードでの範囲外書き込み（その後 root 権限で展開処理が行われる）が修正されたため、Exim を運用している場合は更新してください。
+https://seclists.org/oss-sec/2026/q4/899
+
+■ ⚪ 参考情報
+
+9. NewsPicks への不正アクセスの調査結果が公表され、Metabase の脆弱性を修正した後も攻撃者が作成した API キーが残っていたことから、脆弱性修正後は不審な API キーやアカウントの有無も確認することが推奨されます。
+https://scan.netsecurity.ne.jp/article/2026/11/27/56914.html
+
+10. Xen（XSA-535）、PowerDNS Authoritative／DNSdist（2.0.12／2.1.4）、librelp のセキュリティアドバイザリが公開されました。
+https://seclists.org/oss-sec/2026/q4/900
+
+11. デジタル庁の GSS ファイル共有サービスで、2026/7/30～11/12 に正規の共有先以外からファイルへのアクセスがあり、一部ファイルが漏えいした可能性があると公表されました。
+https://scan.netsecurity.ne.jp/article/2026/11/27/56915.html
+
+12. KARTE への不正アクセスによる情報漏えいの公表が続いており（ピーチ・アビエーション最大のべ約944万件、ワールド900万件余、三井ショッピングパークアプリ311万人分など）、ENEOS 公式アプリの侵害も公表されているため、関連するフィッシングにご注意ください。
+https://news.web.nhk/newsweb/na/nd-20261126de82062
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://newbdez33.github.io/secnews/
