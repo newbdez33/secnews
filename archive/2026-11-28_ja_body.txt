@@ -1,0 +1,57 @@
+各位
+
+本日のセキュリティ情報をお送りします。
+対象期間：2026/11/27 09:10 ～ 2026/11/28 09:05（JST）
+凡例：🔴 緊急（Critical）／🟠 重要（High）／⚪ 参考情報
+
+■ 🔴 緊急（Critical）
+
+1. CISA KEV に GeoServer の脆弱性2件と Drupal コアの CVE-2026-136716 が追加
+GeoServer の認証なしファイル読み取り（CVE-2026-120705）とセキュリティルール回避（CVE-2026-129243）、Drupal インストーラーのアクセス制御回避（CVE-2026-136716）は、いずれも実際の攻撃での悪用が確認されています。未対応の環境は最優先で更新し、Drupal は前回の更新済みサイトも侵害有無を調査してください。
+https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+
+2. Cacti に未修正のゼロデイ脆弱性、4回の HTTP リクエストでリモートコード実行（PoC 公開済み）
+最新版 Cacti 1.2.31 で guest アカウントが有効な場合、認証なしでサーバー上のコマンドを実行される問題で、CVE と修正版はまだありません。guest アカウントを無効にし、Web 画面へのアクセスを制限したうえで、poller テーブルに不審なコマンドがないか確認してください。
+https://thehackernews.com/2026/11/unpatched-cacti-zero-day-enables-rce-in.html
+
+3. Linux カーネル NFS サーバーにリモートから root 権限を取得される脆弱性「NFS2ROOT」（CVE-2026-99362）
+カーネル 3.16 以降の nfsd のヒープオーバーフローで、NFSv4.1/4.2 が稼働し 2049/TCP に到達できれば認証なしで悪用されるおそれがあります。6.12.117／6.18.61／7.3.2 以降のカーネルへ更新して再起動し、すぐに更新できない場合は 2049/TCP へのアクセスを信頼できる範囲に制限してください。
+https://www.bleepingcomputer.com/news/security/new-nfs2root-linux-flaw-can-let-attackers-gain-root-privileges/
+
+4. Mitel OpenScape 4000 に CVSS 10.0 の脆弱性2件（CVE-2026-137724、CVE-2026-137721）
+Platform コンポーネントの認証不備による認証なしアクセスとコマンドインジェクションで、V11 R0.22～R2.11、V10 R1.68 以前が対象です。Mitel のアドバイザリ MISA-2026-0013 に従って更新してください。
+https://github.com/advisories/GHSA-hvf3-26xf-hfh8
+
+5. RealVNC に UDP 接続経由の認証なしリモートコード実行（CVE-2026-137738、CVSS 9.8）
+一部のプラットフォームでは root 権限でコードを実行されるおそれがあり、Server 6.4.0～7.19.0、Viewer 8.4.0～8.6.1 などが対象です。Server は 7.19.1 へ、各 Viewer も最新版へ更新してください。
+https://github.com/advisories/GHSA-v49f-q363-3644
+
+■ 🟠 重要（High）
+
+6. SAP が、従業員の GitHub トークンが盗まれソースコードが複製・改変されたと報じられているセキュリティインシデントを認め、署名鍵の交換や GitHub へのアクセス制限を実施しているため、開発用トークンの権限と有効期限を見直してください。
+https://www.securityweek.com/sap-confirms-cyberattack-source-code-reportedly-compromised/
+
+7. Microsoft Store のアプリ経由で遠隔操作型マルウェア Vinci RAT が配布されたほか、SoftwareOK 公式サイトの Q-Dir／DesktopOK のインストーラーも改ざんされていたため、最近これらを入手した Windows 端末を確認してください。
+https://thehackernews.com/2026/11/microsoft-store-app-found-delivering.html
+
+8. Apache Airflow の Standard／CNCF Kubernetes／Common SQL／Common AI provider に Dag run conf の Jinja を通じて worker 上でコードを実行される脆弱性（CVE-2026-120353）があるため、1.22.0／11.0.0／3.0.0／1.2.0 以降へ更新してください（退役済みの Apache Submarine にも修正予定のない認証回避 CVE-2026-129817 があります）。
+https://seclists.org/oss-sec/2026/q4/902
+
+9. デジタル庁の「マイナアプリ（旧マイナポータルアプリ）」に、入力制限の不備に起因する脆弱性3件が公開されたため、iOS・Android ともに最新版へ更新してください。
+https://jvn.jp/jp/JVN19729125/
+
+■ ⚪ 参考情報
+
+10. ZOZO が、開発環境の脆弱性を悪用されクラウドの認証情報を介して本番環境まで侵入された不正アクセスを公表し、開発環境の約594万人分（マスキング済みデータ）などに漏えいのおそれがあるとしています（KARTE の件とは別事案）。
+https://rocket-boys.co.jp/security-measures-lab/zozo-zozotown-wear-development-production-data-breach-2026/
+
+11. GMOペパボの「ロリポップ！」で 51万6,564件の顧客情報が漏えいし、平文で保存されていた Basic 認証の ID・パスワードや FTP／WebDAV の初期パスワードも含まれていたと公表されました（対象パスワードは強制リセット済み）。
+https://rocket-boys.co.jp/security-measures-lab/gmo_pepabo_lolipop_data_breach_516564_202611/
+
+12. KARTE への不正アクセスによる情報漏えいの公表が続いており（日経ID 539万9,986件など）、大丸松坂屋百貨店、ビックカメラ、パーソルキャリア、日産証券などの漏えいも公表されているため、関連するフィッシングにご注意ください。
+https://rocket-boys.co.jp/security-measures-lab/nikkei_id_karte_data_breach_confirmed_5399986_20261127/
+
+各プロジェクトの状況に応じて、対応要否をご判断ください。
+本メールは自動収集した情報をもとに作成しています。
+
+Web版（過去の配信も閲覧可）：https://newbdez33.github.io/secnews/
